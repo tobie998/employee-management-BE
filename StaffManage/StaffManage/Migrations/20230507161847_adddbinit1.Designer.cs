@@ -11,8 +11,8 @@ using StaffManage.Data;
 namespace StaffManage.Migrations
 {
     [DbContext(typeof(StaffDbContext))]
-    [Migration("20230506092621_AddNewTable")]
-    partial class AddNewTable
+    [Migration("20230507161847_adddbinit1")]
+    partial class adddbinit1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,6 +91,32 @@ namespace StaffManage.Migrations
                     b.HasIndex("Madonvi");
 
                     b.ToTable("canBo");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietGiaiThuong", b =>
+                {
+                    b.Property<int>("Magiaithuong")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Hinhthuc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Namtangthuong")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Noidung")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Magiaithuong", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("ChiTietGiaiThuong");
                 });
 
             modelBuilder.Entity("StaffManage.Data.ChucDanh", b =>
@@ -263,6 +289,10 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Tenkyluat2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Makyluat");
 
                     b.ToTable("kyLuat");
@@ -345,6 +375,35 @@ namespace StaffManage.Migrations
                         .IsRequired();
 
                     b.Navigation("DonVi");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietGiaiThuong", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietGiaiThuongs")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.GiaiThuong", "GiaiThuong")
+                        .WithMany("chiTietGiaiThuongs")
+                        .HasForeignKey("Magiaithuong")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("GiaiThuong");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.CanBo", b =>
+                {
+                    b.Navigation("chiTietGiaiThuongs");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.GiaiThuong", b =>
+                {
+                    b.Navigation("chiTietGiaiThuongs");
                 });
 #pragma warning restore 612, 618
         }

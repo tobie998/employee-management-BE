@@ -4,7 +4,7 @@
 
 namespace StaffManage.Migrations
 {
-    public partial class AddNewTable : Migration
+    public partial class adddbinit1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,6 +61,24 @@ namespace StaffManage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "donvi",
+                columns: table => new
+                {
+                    Madonvi = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tendonvi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Diachi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Fax = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    Nguoidungdau = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dienthoai = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_donvi", x => x.Madonvi);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "giaiThuong",
                 columns: table => new
                 {
@@ -105,7 +123,8 @@ namespace StaffManage.Migrations
                 {
                     Makyluat = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Tenkyluat = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Tenkyluat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tenkyluat2 = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -163,10 +182,82 @@ namespace StaffManage.Migrations
                 {
                     table.PrimaryKey("PK_vanBang", x => x.Mavanbang);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "canBo",
+                columns: table => new
+                {
+                    Macanbo = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Hoten = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Namsinh = table.Column<int>(type: "int", nullable: false),
+                    Gioitinh = table.Column<bool>(type: "bit", nullable: false),
+                    Hocham = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hocvi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Namhocham = table.Column<int>(type: "int", nullable: false),
+                    Namhocvi = table.Column<int>(type: "int", nullable: false),
+                    Diachinharieng = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Dienthoainharieng = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    Dienthoaicoquan = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    Mobile = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Bacluong = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Luongcoban = table.Column<double>(type: "float", nullable: false),
+                    Madonvi = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_canBo", x => x.Macanbo);
+                    table.ForeignKey(
+                        name: "FK_canBo_donvi_Madonvi",
+                        column: x => x.Madonvi,
+                        principalTable: "donvi",
+                        principalColumn: "Madonvi",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ChiTietGiaiThuong",
+                columns: table => new
+                {
+                    Magiaithuong = table.Column<int>(type: "int", nullable: false),
+                    Macanbo = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Hinhthuc = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Noidung = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Namtangthuong = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChiTietGiaiThuong", x => new { x.Magiaithuong, x.Macanbo });
+                    table.ForeignKey(
+                        name: "FK_ChiTietGiaiThuong_canBo_Macanbo",
+                        column: x => x.Macanbo,
+                        principalTable: "canBo",
+                        principalColumn: "Macanbo",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ChiTietGiaiThuong_giaiThuong_Magiaithuong",
+                        column: x => x.Magiaithuong,
+                        principalTable: "giaiThuong",
+                        principalColumn: "Magiaithuong",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_canBo_Madonvi",
+                table: "canBo",
+                column: "Madonvi");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChiTietGiaiThuong_Macanbo",
+                table: "ChiTietGiaiThuong",
+                column: "Macanbo");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ChiTietGiaiThuong");
+
             migrationBuilder.DropTable(
                 name: "chucDanh");
 
@@ -178,9 +269,6 @@ namespace StaffManage.Migrations
 
             migrationBuilder.DropTable(
                 name: "deTaiDuAn");
-
-            migrationBuilder.DropTable(
-                name: "giaiThuong");
 
             migrationBuilder.DropTable(
                 name: "khenThuong");
@@ -202,6 +290,15 @@ namespace StaffManage.Migrations
 
             migrationBuilder.DropTable(
                 name: "vanBang");
+
+            migrationBuilder.DropTable(
+                name: "canBo");
+
+            migrationBuilder.DropTable(
+                name: "giaiThuong");
+
+            migrationBuilder.DropTable(
+                name: "donvi");
         }
     }
 }

@@ -9,6 +9,9 @@ namespace StaffManage.Helpers
         public ApplicationMapper() { 
             CreateMap<DonVi, DonViModel>().ReverseMap();
             CreateMap<CanBo, CanBoModel>().ReverseMap();
+            CreateMap<ChiTietGiaiThuong, ChiTietGiaiThuongModel>().ReverseMap();
+            CreateMap<ChiTietLinhVucNghienCuu, ChiTietLinhVucNghienCuuModel>().ReverseMap();
+            CreateMap<ChiTietChucVu, ChiTietChucVuModel>().ReverseMap();
         }
     }
 }
