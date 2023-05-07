@@ -10510,11 +10510,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\QuangTd\\Desktop\\C#\\StaffManage\\StaffManage\\StaffManage.csproj",
+      "projectUniqueName": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\StaffManage\\StaffManage\\StaffManage.csproj",
       "projectName": "StaffManage",
-      "projectPath": "C:\\Users\\QuangTd\\Desktop\\C#\\StaffManage\\StaffManage\\StaffManage.csproj",
+      "projectPath": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\StaffManage\\StaffManage\\StaffManage.csproj",
       "packagesPath": "C:\\Users\\QuangTd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\QuangTd\\Desktop\\C#\\StaffManage\\StaffManage\\obj\\",
+      "outputPath": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\StaffManage\\StaffManage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ChMaA6glC0Q3YVvx4o+mlM953rd04EkOiqW+rknjdJ03LIPHTInGdrxAdQ4oLUsqKU8dFLUSW8tmJeQEo68+wg==",
+  "dgSpecHash": "nkmlzigwhIrWDQw1PWVxGBMuoLgT0pu96yC7j35zhgK4SqzHdxltfMt8otPXsb0r6PsMY/F2e/ZWmHQ1XOo0gg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\QuangTd\\Desktop\\C#\\StaffManage\\StaffManage\\StaffManage.csproj",
+  "projectFilePath": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\StaffManage\\StaffManage\\StaffManage.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\QuangTd\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\QuangTd\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
