@@ -89,7 +89,7 @@ namespace StaffManage.Controllers
         // POST: api/CanBoModels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<CanBoModel>> PostCanBoModel(CanBoModel canBoModel)
+        public async Task<ActionResult<CanBo>> PostCanBoModel(CanBoModel canBoModel)
         {
           if (_context.canBo == null)
           {

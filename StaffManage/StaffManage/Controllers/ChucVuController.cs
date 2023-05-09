@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
@@ -14,26 +16,29 @@ namespace StaffManage.Controllers
     public class ChucVuController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ChucVuController(StaffDbContext context)
+        public ChucVuController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/ChucVu
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChucVu>>> GetchucVu()
+        public async Task<ActionResult<IEnumerable<ChucVuModel>>> GetchucVu()
         {
           if (_context.chucVu == null)
           {
               return NotFound();
           }
-            return await _context.chucVu.ToListAsync();
+            var chucvu = await _context.chucVu.ToListAsync();
+            return _mapper.Map<List<ChucVuModel>>(chucvu);
         }
 
         // GET: api/ChucVu/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ChucVu>> GetChucVu(int id)
+        public async Task<ActionResult<ChucVuModel>> GetChucVu(int id)
         {
           if (_context.chucVu == null)
           {
@@ -46,20 +51,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return chucVu;
+            return _mapper.Map<ChucVuModel>(chucVu);
         }
 
         // PUT: api/ChucVu/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutChucVu(int id, ChucVu chucVu)
+        public async Task<IActionResult> PutChucVu(int id, ChucVuModel chucVu)
         {
             if (id != chucVu.Machucvu)
             {
                 return BadRequest();
             }
 
-            _context.Entry(chucVu).State = EntityState.Modified;
+            var chitiet = _mapper.Map<ChucVu>(chucVu);
+            _context.chucVu!.Update(chitiet);
 
             try
             {
@@ -83,13 +89,14 @@ namespace StaffManage.Controllers
         // POST: api/ChucVu
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ChucVu>> PostChucVu(ChucVu chucVu)
+        public async Task<ActionResult<ChucVuModel>> PostChucVu(ChucVuModel chucVu)
         {
           if (_context.chucVu == null)
           {
               return Problem("Entity set 'StaffDbContext.chucVu'  is null.");
           }
-            _context.chucVu.Add(chucVu);
+            var chitiet = _mapper.Map<ChucVu>(chucVu);
+            _context.chucVu.Add(chitiet);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetChucVu", new { id = chucVu.Machucvu }, chucVu);

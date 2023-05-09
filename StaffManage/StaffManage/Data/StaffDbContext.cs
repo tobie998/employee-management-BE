@@ -26,6 +26,8 @@ namespace StaffManage.Data
         public DbSet<ChiTietGiaiThuong> chiTietGiaiThuong { get; set; }
         public DbSet<ChiTietLinhVucNghienCuu> chiTietLinhVucNghienCuu { get; set; }
         public DbSet<ChiTietChucVu> chiTietChucVu { get; set; }
+        public DbSet<ChiTietChucDanh> chiTietChucDanh { get; set; }
+        public DbSet<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTao { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -62,6 +64,30 @@ namespace StaffManage.Data
                 .HasForeignKey(e => e.Machucvu);
 
                 entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietChucVus)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietChucDanh>(entity =>
+            {
+                entity.HasKey(c => new { c.Machucdanh, c.Macanbo });
+
+                entity.HasOne(e => e.ChucDanh).WithMany(e => e.chiTietChucDanhs)
+                .HasForeignKey(e => e.Machucdanh);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietChucDanhs)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietQuaTrinhDaoTao>(entity =>
+            {
+                entity.HasKey(c => new { c.Mabacdaotao, c.Macanbo });
+
+                entity.HasOne(e => e.QuaTrinhDaoTao).WithMany(e => e.chiTietQuaTrinhDaoTaos)
+                .HasForeignKey(e => e.Mabacdaotao);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietQuaTrinhDaoTaos)
                 .HasForeignKey(e => e.Macanbo);
 
             });

@@ -39,11 +39,15 @@ namespace StaffManage.Data
         public ICollection<ChiTietGiaiThuong> chiTietGiaiThuongs { get; set; }
         public ICollection<ChiTietLinhVucNghienCuu> chiTietLinhVucNghienCuu { get; set; }
         public ICollection<ChiTietChucVu> chiTietChucVus { get; set; }
+        public ICollection<ChiTietChucDanh> chiTietChucDanhs { get; set; }
+        public ICollection<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTaos { get; set; }
         public CanBo()
         {
             chiTietGiaiThuongs = new HashSet<ChiTietGiaiThuong>();
             chiTietLinhVucNghienCuu = new HashSet<ChiTietLinhVucNghienCuu>();
             chiTietChucVus = new HashSet<ChiTietChucVu>();
+            chiTietChucDanhs = new HashSet<ChiTietChucDanh>();
+            chiTietQuaTrinhDaoTaos = new HashSet<ChiTietQuaTrinhDaoTao>();
         }
     }
 }

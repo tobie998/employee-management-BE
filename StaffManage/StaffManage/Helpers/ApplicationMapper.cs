@@ -12,6 +12,10 @@ namespace StaffManage.Helpers
             CreateMap<ChiTietGiaiThuong, ChiTietGiaiThuongModel>().ReverseMap();
             CreateMap<ChiTietLinhVucNghienCuu, ChiTietLinhVucNghienCuuModel>().ReverseMap();
             CreateMap<ChiTietChucVu, ChiTietChucVuModel>().ReverseMap();
+            CreateMap<ChiTietChucDanh, ChiTietChucDanhModel>().ReverseMap();
+            CreateMap<ChiTietQuaTrinhDaoTao, ChiTietQuaTrinhDaoTaoModel>().ReverseMap();
+            CreateMap<ChucVu, ChucVuModel>().ReverseMap();
+
         }
     }
 }
