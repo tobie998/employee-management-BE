@@ -28,6 +28,9 @@ namespace StaffManage.Data
         public DbSet<ChiTietChucVu> chiTietChucVu { get; set; }
         public DbSet<ChiTietChucDanh> chiTietChucDanh { get; set; }
         public DbSet<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTao { get; set; }
+        public DbSet<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CN { get; set; }
+
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -88,6 +91,18 @@ namespace StaffManage.Data
                 .HasForeignKey(e => e.Mabacdaotao);
 
                 entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietQuaTrinhDaoTaos)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietVeKinhNghiemKH_CN>(entity =>
+            {
+                entity.HasKey(c => new { c.Mahinhthuchoidong, c.Macanbo });
+
+                entity.HasOne(e => e.KinhNghiemKH_CN).WithMany(e => e.chiTietVeKinhNghiemKH_CNs)
+                .HasForeignKey(e => e.Mahinhthuchoidong);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietVeKinhNghiemKH_CNs)
                 .HasForeignKey(e => e.Macanbo);
 
             });

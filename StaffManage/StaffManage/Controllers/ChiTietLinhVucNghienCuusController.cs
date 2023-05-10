@@ -38,14 +38,14 @@ namespace StaffManage.Controllers
         }
 
         // GET: api/ChiTietLinhVucNghienCuus/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ChiTietLinhVucNghienCuuModel>> GetChiTietLinhVucNghienCuu(int id)
+        [HttpGet("{machuyennganh}/{macanbo}")]
+        public async Task<ActionResult<ChiTietLinhVucNghienCuuModel>> GetChiTietLinhVucNghienCuu(int machuyennganh, string macanbo)
         {
           if (_context.chiTietLinhVucNghienCuu == null)
           {
               return NotFound();
           }
-            var chiTietLinhVucNghienCuu = await _context.chiTietLinhVucNghienCuu.FindAsync(id);
+            var chiTietLinhVucNghienCuu = await _context.chiTietLinhVucNghienCuu.FindAsync(machuyennganh, macanbo);
 
             if (chiTietLinhVucNghienCuu == null)
             {

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
@@ -14,26 +16,29 @@ namespace StaffManage.Controllers
     public class LinhVucNghienCuusController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public LinhVucNghienCuusController(StaffDbContext context)
+        public LinhVucNghienCuusController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/LinhVucNghienCuus
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LinhVucNghienCuu>>> GetlinhVuc()
+        public async Task<ActionResult<IEnumerable<LinhVucNghienCuuModel>>> GetlinhVuc()
         {
           if (_context.linhVuc == null)
           {
               return NotFound();
           }
-            return await _context.linhVuc.ToListAsync();
+          var linhvuc = await _context.linhVuc.ToListAsync();
+            return _mapper.Map<List<LinhVucNghienCuuModel>>(linhvuc);
         }
 
         // GET: api/LinhVucNghienCuus/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<LinhVucNghienCuu>> GetLinhVucNghienCuu(int id)
+        public async Task<ActionResult<LinhVucNghienCuuModel>> GetLinhVucNghienCuu(int id)
         {
           if (_context.linhVuc == null)
           {
@@ -46,20 +51,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return linhVucNghienCuu;
+            return _mapper.Map<LinhVucNghienCuuModel>(linhVucNghienCuu);
         }
 
         // PUT: api/LinhVucNghienCuus/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLinhVucNghienCuu(int id, LinhVucNghienCuu linhVucNghienCuu)
+        public async Task<IActionResult> PutLinhVucNghienCuu(int id, LinhVucNghienCuuModel linhVucNghienCuu)
         {
             if (id != linhVucNghienCuu.Machuyennganh)
             {
                 return BadRequest();
             }
 
-            _context.Entry(linhVucNghienCuu).State = EntityState.Modified;
+            var chitiet = _mapper.Map<LinhVucNghienCuu>(linhVucNghienCuu);
+            _context.linhVuc!.Update(chitiet);
 
             try
             {
@@ -83,13 +89,14 @@ namespace StaffManage.Controllers
         // POST: api/LinhVucNghienCuus
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<LinhVucNghienCuu>> PostLinhVucNghienCuu(LinhVucNghienCuu linhVucNghienCuu)
+        public async Task<ActionResult<LinhVucNghienCuu>> PostLinhVucNghienCuu(LinhVucNghienCuuModel linhVucNghienCuu)
         {
           if (_context.linhVuc == null)
           {
               return Problem("Entity set 'StaffDbContext.linhVuc'  is null.");
           }
-            _context.linhVuc.Add(linhVucNghienCuu);
+            var chitiet = _mapper.Map<LinhVucNghienCuu>(linhVucNghienCuu);
+            _context.linhVuc.Add(chitiet);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetLinhVucNghienCuu", new { id = linhVucNghienCuu.Machuyennganh }, linhVucNghienCuu);

@@ -37,14 +37,14 @@ namespace StaffManage.Controllers
         }
 
         // GET: api/ChiTietQuaTrinhDaoTaos/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ChiTietQuaTrinhDaoTaoModel>> GetChiTietQuaTrinhDaoTao(int id)
+        [HttpGet("{mabacdaotao}/{macanbo}")]
+        public async Task<ActionResult<ChiTietQuaTrinhDaoTaoModel>> GetChiTietQuaTrinhDaoTao(int mabacdaotao, string macanbo)
         {
           if (_context.chiTietQuaTrinhDaoTao == null)
           {
               return NotFound();
           }
-            var chiTietQuaTrinhDaoTao = await _context.chiTietQuaTrinhDaoTao.FindAsync(id);
+            var chiTietQuaTrinhDaoTao = await _context.chiTietQuaTrinhDaoTao.FindAsync(mabacdaotao, macanbo);
 
             if (chiTietQuaTrinhDaoTao == null)
             {

@@ -10,5 +10,11 @@ namespace StaffManage.Data
         public int Mahinhthuchoidong { get; set; }
         [Required]
         public string Hinhthuchoidong { get; set; }
+
+        public ICollection<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CNs { get; set; }
+        public KinhNghiemKH_CN()
+        {
+            chiTietVeKinhNghiemKH_CNs = new HashSet<ChiTietVeKinhNghiemKH_CN>();
+        }
     }
 }

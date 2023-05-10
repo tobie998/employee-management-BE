@@ -41,6 +41,7 @@ namespace StaffManage.Data
         public ICollection<ChiTietChucVu> chiTietChucVus { get; set; }
         public ICollection<ChiTietChucDanh> chiTietChucDanhs { get; set; }
         public ICollection<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTaos { get; set; }
+        public ICollection<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CNs { get; set; }
         public CanBo()
         {
             chiTietGiaiThuongs = new HashSet<ChiTietGiaiThuong>();
@@ -48,6 +49,7 @@ namespace StaffManage.Data
             chiTietChucVus = new HashSet<ChiTietChucVu>();
             chiTietChucDanhs = new HashSet<ChiTietChucDanh>();
             chiTietQuaTrinhDaoTaos = new HashSet<ChiTietQuaTrinhDaoTao>();
+            chiTietVeKinhNghiemKH_CNs = new HashSet<ChiTietVeKinhNghiemKH_CN>();
         }
     }
 }
