@@ -57,10 +57,10 @@ namespace StaffManage.Controllers
 
         // PUT: api/ChiTietVeKinhNghiemKH_CN/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutChiTietVeKinhNghiemKH_CN(int id, ChiTietVeKinhNghiemKH_CnModel chiTietVeKinhNghiemKH_CN)
+        [HttpPut("{mahinhthuchoidong}/{macanbo}")]
+        public async Task<IActionResult> PutChiTietVeKinhNghiemKH_CN(int mahinhthuchoidong, string macanbo, ChiTietVeKinhNghiemKH_CnModel chiTietVeKinhNghiemKH_CN)
         {
-            if (id != chiTietVeKinhNghiemKH_CN.Mahinhthuchoidong)
+            if (mahinhthuchoidong != chiTietVeKinhNghiemKH_CN.Mahinhthuchoidong || macanbo!= chiTietVeKinhNghiemKH_CN.Macanbo)
             {
                 return BadRequest();
             }
@@ -74,7 +74,7 @@ namespace StaffManage.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ChiTietVeKinhNghiemKH_CNExists(id))
+                if (!ChiTietVeKinhNghiemKH_CNExists(mahinhthuchoidong, macanbo))
                 {
                     return NotFound();
                 }
@@ -105,7 +105,7 @@ namespace StaffManage.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ChiTietVeKinhNghiemKH_CNExists(chiTietVeKinhNghiemKH_CN.Mahinhthuchoidong))
+                if (ChiTietVeKinhNghiemKH_CNExists(chiTietVeKinhNghiemKH_CN.Mahinhthuchoidong, chiTietVeKinhNghiemKH_CN.Macanbo))
                 {
                     return Conflict();
                 }
@@ -115,18 +115,18 @@ namespace StaffManage.Controllers
                 }
             }
 
-            return CreatedAtAction("GetChiTietVeKinhNghiemKH_CN", new { id = chiTietVeKinhNghiemKH_CN.Mahinhthuchoidong }, chiTietVeKinhNghiemKH_CN);
+            return Ok();
         }
 
         // DELETE: api/ChiTietVeKinhNghiemKH_CN/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteChiTietVeKinhNghiemKH_CN(int id)
+        [HttpDelete("{mahinhthuchoidong}/{macanbo}")]
+        public async Task<IActionResult> DeleteChiTietVeKinhNghiemKH_CN(int mahinhthuchoidong, string macanbo)
         {
             if (_context.chiTietVeKinhNghiemKH_CN == null)
             {
                 return NotFound();
             }
-            var chiTietVeKinhNghiemKH_CN = await _context.chiTietVeKinhNghiemKH_CN.FindAsync(id);
+            var chiTietVeKinhNghiemKH_CN = await _context.chiTietVeKinhNghiemKH_CN.FindAsync(mahinhthuchoidong,macanbo);
             if (chiTietVeKinhNghiemKH_CN == null)
             {
                 return NotFound();
@@ -138,9 +138,9 @@ namespace StaffManage.Controllers
             return NoContent();
         }
 
-        private bool ChiTietVeKinhNghiemKH_CNExists(int id)
+        private bool ChiTietVeKinhNghiemKH_CNExists(int mahinhthuchoidong, string macanbo)
         {
-            return (_context.chiTietVeKinhNghiemKH_CN?.Any(e => e.Mahinhthuchoidong == id)).GetValueOrDefault();
+            return (_context.chiTietVeKinhNghiemKH_CN?.Any(e => e.Mahinhthuchoidong == mahinhthuchoidong && e.Macanbo == macanbo)).GetValueOrDefault();
         }
     }
 }

@@ -56,10 +56,10 @@ namespace StaffManage.Controllers
 
         // PUT: api/ChiTietGiaiThuongs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutChiTietGiaiThuong(int id, ChiTietGiaiThuongModel chiTietGiaiThuong)
+        [HttpPut("{magiaithuong}/{macanbo}")]
+        public async Task<IActionResult> PutChiTietGiaiThuong(int magiaithuong, string macanbo, ChiTietGiaiThuongModel chiTietGiaiThuong)
         {
-            if (id != chiTietGiaiThuong.Magiaithuong)
+            if (magiaithuong != chiTietGiaiThuong.Magiaithuong || macanbo != chiTietGiaiThuong.Macanbo)
             {
                 return BadRequest();
             }
@@ -72,7 +72,7 @@ namespace StaffManage.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ChiTietGiaiThuongExists(id))
+                if (!ChiTietGiaiThuongExists(magiaithuong, macanbo))
                 {
                     return NotFound();
                 }
@@ -102,7 +102,7 @@ namespace StaffManage.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ChiTietGiaiThuongExists(chiTietGiaiThuong.Magiaithuong))
+                if (ChiTietGiaiThuongExists(chiTietGiaiThuong.Magiaithuong, chiTietGiaiThuong.Macanbo))
                 {
                     return Conflict();
                 }
@@ -112,18 +112,18 @@ namespace StaffManage.Controllers
                 }
             }
 
-            return CreatedAtAction("GetChiTietGiaiThuong", new { id = chiTietGiaiThuong.Magiaithuong }, chiTietGiaiThuong);
+            return Ok();
         }
 
         // DELETE: api/ChiTietGiaiThuongs/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteChiTietGiaiThuong(int id)
+        [HttpDelete("{magiaithuong}/{macanbo}")]
+        public async Task<IActionResult> DeleteChiTietGiaiThuong(int magiaithuong, string macanbo)
         {
             if (_context.chiTietGiaiThuong == null)
             {
                 return NotFound();
             }
-            var chiTietGiaiThuong = await _context.chiTietGiaiThuong.FindAsync(id);
+            var chiTietGiaiThuong = await _context.chiTietGiaiThuong.FindAsync(magiaithuong,macanbo);
             if (chiTietGiaiThuong == null)
             {
                 return NotFound();
@@ -135,9 +135,9 @@ namespace StaffManage.Controllers
             return NoContent();
         }
 
-        private bool ChiTietGiaiThuongExists(int id)
+        private bool ChiTietGiaiThuongExists(int magiaithuong, string macanbo)
         {
-            return (_context.chiTietGiaiThuong?.Any(e => e.Magiaithuong == id)).GetValueOrDefault();
+            return (_context.chiTietGiaiThuong?.Any(e => e.Magiaithuong == magiaithuong && e.Macanbo == macanbo)).GetValueOrDefault();
         }
     }
 }
