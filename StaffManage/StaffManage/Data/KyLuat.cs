@@ -8,5 +8,11 @@ namespace StaffManage.Data
         public int Makyluat { get; set; }
         [Required]
         public string Tenkyluat { get; set; }
+
+        public ICollection<ChiTietKyLuat> chiTietKyLuat { get; set; }
+        public KyLuat()
+        {
+            chiTietKyLuat = new HashSet<ChiTietKyLuat>();
+        }
     }
 }

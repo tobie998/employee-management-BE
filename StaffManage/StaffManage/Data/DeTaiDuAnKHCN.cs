@@ -2,11 +2,12 @@
 
 namespace StaffManage.Data
 {
-    public class DeTaiDuAnKHCNThamGia
+    public class DeTaiDuAnKHCN
     {
         [Key]
         public int Madetai { get; set; }
         [Required]
         public string Tendetai { get; set; }
+
     }
 }

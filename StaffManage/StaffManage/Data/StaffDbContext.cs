@@ -22,15 +22,20 @@ namespace StaffManage.Data
         public DbSet<KyLuat> kyLuat { get; set; }
         public DbSet<KhenThuong> khenThuong { get; set; }
         public DbSet<CongTrinhKH_CN> congTrinhKH_CN { get; set; }
-        public DbSet<DeTaiDuAnKHCNThamGia> deTaiDuAn { get; set; }
+        public DbSet<DeTaiDuAnKHCN> deTaiDuAn { get; set; }
         public DbSet<ChiTietGiaiThuong> chiTietGiaiThuong { get; set; }
         public DbSet<ChiTietLinhVucNghienCuu> chiTietLinhVucNghienCuu { get; set; }
         public DbSet<ChiTietChucVu> chiTietChucVu { get; set; }
         public DbSet<ChiTietChucDanh> chiTietChucDanh { get; set; }
         public DbSet<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTao { get; set; }
         public DbSet<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CN { get; set; }
+        public DbSet<ChiTietTrinhDoNgoaiNgu> chiTietTrinhDoNgoaiNgu { get; set; }
+        public DbSet<NghienCuuSinhDaHuongDan> nghienCuuSinhDaHuongDan { get; set; }
+        public DbSet<ChiTietKyLuat> chiTietKyLuat { get; set; }
+        public DbSet<ChiTietKhenThuong> chiTietKhenThuong { get; set; }
+        public DbSet<ChiTietQuaTrinhCongTac> chiTietQuaTrinhCongTac { get; set; }
+        public DbSet<ChiTietCongTrinhKH_CN> chiTietCongTrinhKH_CN { get; set; }
 
-        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -107,6 +112,71 @@ namespace StaffManage.Data
 
             });
 
+            modelBuilder.Entity<ChiTietTrinhDoNgoaiNgu>(entity =>
+            {
+                entity.HasKey(c => new { c.Mangoaingu, c.Macanbo });
+
+                entity.HasOne(e => e.TrinhDoNgoaiNgu).WithMany(e => e.chiTietTrinhDoNgoaiNgu)
+                .HasForeignKey(e => e.Mangoaingu);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietTrinhDoNgoaiNgu)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<NghienCuuSinhDaHuongDan>(entity =>
+            {
+                entity.HasKey(c => new { c.MaNCS, c.Macanbo });
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.nghienCuuSinhDaHuongDan)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietKyLuat>(entity =>
+            {
+                entity.HasKey(c => new { c.Makyluat, c.Macanbo });
+
+                entity.HasOne(e => e.KyLuat).WithMany(e => e.chiTietKyLuat)
+                .HasForeignKey(e => e.Makyluat);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietKyLuat)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietKhenThuong>(entity =>
+            {
+                entity.HasKey(c => new { c.Makhenthuong, c.Macanbo });
+
+                entity.HasOne(e => e.KhenThuong).WithMany(e => e.chiTietKhenThuong)
+                .HasForeignKey(e => e.Makhenthuong);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietKhenThuong)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietQuaTrinhCongTac>(entity =>
+            {
+                entity.HasKey(c => new { c.Maquatrinhcongtac, c.Macanbo });
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietQuaTrinhCongTac)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietCongTrinhKH_CN>(entity =>
+            {
+                entity.HasKey(c => new { c.MacongtrinhKH, c.Macanbo });
+
+                entity.HasOne(e => e.CongTrinhKH_CN).WithMany(e => e.chiTietCongTrinhKH_CN)
+                .HasForeignKey(e => e.MacongtrinhKH);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietCongTrinhKH_CN)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
 
             base.OnModelCreating(modelBuilder);
         }

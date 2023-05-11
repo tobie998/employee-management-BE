@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
@@ -14,26 +16,29 @@ namespace StaffManage.Controllers
     public class KyLuatsController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public KyLuatsController(StaffDbContext context)
+        public KyLuatsController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/KyLuats
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<KyLuat>>> GetkyLuat()
+        public async Task<ActionResult<IEnumerable<KyLuatModel>>> GetkyLuat()
         {
           if (_context.kyLuat == null)
           {
               return NotFound();
           }
-            return await _context.kyLuat.ToListAsync();
+            var list = await _context.kyLuat.ToListAsync();
+            return _mapper.Map<List<KyLuatModel>>(list);
         }
 
         // GET: api/KyLuats/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<KyLuat>> GetKyLuat(int id)
+        public async Task<ActionResult<KyLuatModel>> GetKyLuat(int id)
         {
           if (_context.kyLuat == null)
           {
@@ -46,20 +51,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return kyLuat;
+            return _mapper.Map<KyLuatModel>(kyLuat);
         }
 
         // PUT: api/KyLuats/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutKyLuat(int id, KyLuat kyLuat)
+        public async Task<IActionResult> PutKyLuat(int id, KyLuatModel kyLuat)
         {
             if (id != kyLuat.Makyluat)
             {
                 return BadRequest();
             }
 
-            _context.Entry(kyLuat).State = EntityState.Modified;
+            var chitiet = _mapper.Map<KyLuat>(kyLuat);
+            _context.kyLuat!.Update(chitiet);
 
             try
             {
@@ -83,16 +89,17 @@ namespace StaffManage.Controllers
         // POST: api/KyLuats
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<KyLuat>> PostKyLuat(KyLuat kyLuat)
+        public async Task<ActionResult<KyLuat>> PostKyLuat(KyLuatModel kyLuat)
         {
           if (_context.kyLuat == null)
           {
               return Problem("Entity set 'StaffDbContext.kyLuat'  is null.");
           }
-            _context.kyLuat.Add(kyLuat);
+            var chitiet = _mapper.Map<KyLuat>(kyLuat);
+            _context.kyLuat.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetKyLuat", new { id = kyLuat.Makyluat }, kyLuat);
+            return Ok();
         }
 
         // DELETE: api/KyLuats/5

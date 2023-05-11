@@ -42,6 +42,13 @@ namespace StaffManage.Data
         public ICollection<ChiTietChucDanh> chiTietChucDanhs { get; set; }
         public ICollection<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTaos { get; set; }
         public ICollection<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CNs { get; set; }
+        public ICollection<ChiTietTrinhDoNgoaiNgu> chiTietTrinhDoNgoaiNgu { get; set; }
+        public ICollection<NghienCuuSinhDaHuongDan> nghienCuuSinhDaHuongDan { get; set; }
+        public ICollection<ChiTietKyLuat> chiTietKyLuat { get; set; }
+        public ICollection<ChiTietKhenThuong> chiTietKhenThuong { get; set; }
+        public ICollection<ChiTietQuaTrinhCongTac> chiTietQuaTrinhCongTac { get; set; }
+        public ICollection<ChiTietCongTrinhKH_CN> chiTietCongTrinhKH_CN { get; set; }
+
         public CanBo()
         {
             chiTietGiaiThuongs = new HashSet<ChiTietGiaiThuong>();
@@ -50,6 +57,12 @@ namespace StaffManage.Data
             chiTietChucDanhs = new HashSet<ChiTietChucDanh>();
             chiTietQuaTrinhDaoTaos = new HashSet<ChiTietQuaTrinhDaoTao>();
             chiTietVeKinhNghiemKH_CNs = new HashSet<ChiTietVeKinhNghiemKH_CN>();
+            chiTietTrinhDoNgoaiNgu = new HashSet<ChiTietTrinhDoNgoaiNgu>();
+            nghienCuuSinhDaHuongDan = new HashSet<NghienCuuSinhDaHuongDan>();
+            chiTietKyLuat = new HashSet<ChiTietKyLuat>();
+            chiTietKhenThuong = new HashSet<ChiTietKhenThuong>();
+            chiTietQuaTrinhCongTac = new HashSet<ChiTietQuaTrinhCongTac>();
+            chiTietCongTrinhKH_CN = new HashSet<ChiTietCongTrinhKH_CN>();
         }
     }
 }

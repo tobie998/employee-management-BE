@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
@@ -14,26 +16,29 @@ namespace StaffManage.Controllers
     public class TrinhDoNgoaiNgusController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public TrinhDoNgoaiNgusController(StaffDbContext context)
+        public TrinhDoNgoaiNgusController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/TrinhDoNgoaiNgus
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TrinhDoNgoaiNgu>>> GettrinhDoNgoaiNgu()
+        public async Task<ActionResult<IEnumerable<TrinhDoNgoaiNguModel>>> GettrinhDoNgoaiNgu()
         {
           if (_context.trinhDoNgoaiNgu == null)
           {
               return NotFound();
           }
-            return await _context.trinhDoNgoaiNgu.ToListAsync();
+            var list = await _context.trinhDoNgoaiNgu.ToListAsync();
+            return _mapper.Map<List<TrinhDoNgoaiNguModel>>(list);
         }
 
         // GET: api/TrinhDoNgoaiNgus/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TrinhDoNgoaiNgu>> GetTrinhDoNgoaiNgu(int id)
+        public async Task<ActionResult<TrinhDoNgoaiNguModel>> GetTrinhDoNgoaiNgu(int id)
         {
           if (_context.trinhDoNgoaiNgu == null)
           {
@@ -46,20 +51,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return trinhDoNgoaiNgu;
+            return _mapper.Map<TrinhDoNgoaiNguModel>(trinhDoNgoaiNgu);
         }
 
         // PUT: api/TrinhDoNgoaiNgus/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTrinhDoNgoaiNgu(int id, TrinhDoNgoaiNgu trinhDoNgoaiNgu)
+        public async Task<IActionResult> PutTrinhDoNgoaiNgu(int id, TrinhDoNgoaiNguModel trinhDoNgoaiNgu)
         {
             if (id != trinhDoNgoaiNgu.Mangoaingu)
             {
                 return BadRequest();
             }
 
-            _context.Entry(trinhDoNgoaiNgu).State = EntityState.Modified;
+            var chitiet = _mapper.Map<TrinhDoNgoaiNgu>(trinhDoNgoaiNgu);
+            _context.trinhDoNgoaiNgu!.Update(chitiet);
 
             try
             {
@@ -83,16 +89,17 @@ namespace StaffManage.Controllers
         // POST: api/TrinhDoNgoaiNgus
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TrinhDoNgoaiNgu>> PostTrinhDoNgoaiNgu(TrinhDoNgoaiNgu trinhDoNgoaiNgu)
+        public async Task<ActionResult<TrinhDoNgoaiNgu>> PostTrinhDoNgoaiNgu(TrinhDoNgoaiNguModel trinhDoNgoaiNgu)
         {
           if (_context.trinhDoNgoaiNgu == null)
           {
               return Problem("Entity set 'StaffDbContext.trinhDoNgoaiNgu'  is null.");
           }
-            _context.trinhDoNgoaiNgu.Add(trinhDoNgoaiNgu);
+            var chitiet = _mapper.Map<TrinhDoNgoaiNgu>(trinhDoNgoaiNgu);
+            _context.trinhDoNgoaiNgu.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTrinhDoNgoaiNgu", new { id = trinhDoNgoaiNgu.Mangoaingu }, trinhDoNgoaiNgu);
+            return Ok();
         }
 
         // DELETE: api/TrinhDoNgoaiNgus/5
