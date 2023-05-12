@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
@@ -14,26 +16,29 @@ namespace StaffManage.Controllers
     public class GiaiThuongsController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public GiaiThuongsController(StaffDbContext context)
+        public GiaiThuongsController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/GiaiThuongs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GiaiThuong>>> GetgiaiThuong()
+        public async Task<ActionResult<IEnumerable<GiaiThuongModel>>> GetgiaiThuong()
         {
           if (_context.giaiThuong == null)
           {
               return NotFound();
           }
-            return await _context.giaiThuong.ToListAsync();
+            var list = await _context.giaiThuong.ToListAsync();
+            return _mapper.Map<List<GiaiThuongModel>>(list);
         }
 
         // GET: api/GiaiThuongs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GiaiThuong>> GetGiaiThuong(int id)
+        public async Task<ActionResult<GiaiThuongModel>> GetGiaiThuong(int id)
         {
           if (_context.giaiThuong == null)
           {
@@ -46,20 +51,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return giaiThuong;
+            return _mapper.Map<GiaiThuongModel>(giaiThuong);
         }
 
         // PUT: api/GiaiThuongs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGiaiThuong(int id, GiaiThuong giaiThuong)
+        public async Task<IActionResult> PutGiaiThuong(int id, GiaiThuongModel giaiThuong)
         {
             if (id != giaiThuong.Magiaithuong)
             {
                 return BadRequest();
             }
 
-            _context.Entry(giaiThuong).State = EntityState.Modified;
+            var giaithuong = _mapper.Map<GiaiThuong>(giaiThuong);
+            _context.giaiThuong!.Update(giaithuong);
 
             try
             {
@@ -83,13 +89,14 @@ namespace StaffManage.Controllers
         // POST: api/GiaiThuongs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<GiaiThuong>> PostGiaiThuong(GiaiThuong giaiThuong)
+        public async Task<ActionResult<GiaiThuong>> PostGiaiThuong(GiaiThuongModel giaiThuong)
         {
           if (_context.giaiThuong == null)
           {
               return Problem("Entity set 'StaffDbContext.giaiThuong'  is null.");
           }
-            _context.giaiThuong.Add(giaiThuong);
+            var giaithuong = _mapper.Map<GiaiThuong>(giaiThuong);
+            _context.giaiThuong.Add(giaithuong);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetGiaiThuong", new { id = giaiThuong.Magiaithuong }, giaiThuong);

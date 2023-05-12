@@ -2,38 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VanBangCanBoesController : ControllerBase
+    public class VanBangCanBoController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public VanBangCanBoesController(StaffDbContext context)
+        public VanBangCanBoController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/VanBangCanBoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<VanBangCanBo>>> GetvanBang()
+        public async Task<ActionResult<IEnumerable<VanBangCanBoModel>>> GetvanBang()
         {
           if (_context.vanBang == null)
           {
               return NotFound();
           }
-            return await _context.vanBang.ToListAsync();
+            var list = await _context.vanBang.ToListAsync();
+            return _mapper.Map<List<VanBangCanBoModel>>(list);
         }
 
         // GET: api/VanBangCanBoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<VanBangCanBo>> GetVanBangCanBo(int id)
+        public async Task<ActionResult<VanBangCanBoModel>> GetVanBangCanBo(int id)
         {
           if (_context.vanBang == null)
           {
@@ -46,20 +51,20 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return vanBangCanBo;
+            return _mapper.Map<VanBangCanBoModel>(vanBangCanBo);
         }
 
         // PUT: api/VanBangCanBoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVanBangCanBo(int id, VanBangCanBo vanBangCanBo)
+        public async Task<IActionResult> PutVanBangCanBo(int id, VanBangCanBoModel vanBangCanBo)
         {
             if (id != vanBangCanBo.Mavanbang)
             {
                 return BadRequest();
             }
-
-            _context.Entry(vanBangCanBo).State = EntityState.Modified;
+            var chitiet = _mapper.Map<VanBangCanBo>(vanBangCanBo);
+            _context.vanBang!.Update(chitiet);
 
             try
             {
@@ -83,16 +88,17 @@ namespace StaffManage.Controllers
         // POST: api/VanBangCanBoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<VanBangCanBo>> PostVanBangCanBo(VanBangCanBo vanBangCanBo)
+        public async Task<ActionResult<VanBangCanBo>> PostVanBangCanBo(VanBangCanBoModel vanBangCanBo)
         {
           if (_context.vanBang == null)
           {
               return Problem("Entity set 'StaffDbContext.vanBang'  is null.");
           }
-            _context.vanBang.Add(vanBangCanBo);
+            var chitiet = _mapper.Map<VanBangCanBo>(vanBangCanBo);
+            _context.vanBang.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetVanBangCanBo", new { id = vanBangCanBo.Mavanbang }, vanBangCanBo);
+            return Ok();
         }
 
         // DELETE: api/VanBangCanBoes/5

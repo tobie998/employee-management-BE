@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
@@ -14,26 +16,30 @@ namespace StaffManage.Controllers
     public class KinhNghiemKH_CNController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public KinhNghiemKH_CNController(StaffDbContext context)
+
+        public KinhNghiemKH_CNController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/KinhNghiemKH_CN
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<KinhNghiemKH_CN>>> GetkinhNghiemKH_CN()
+        public async Task<ActionResult<IEnumerable<KinhNghiemKH_CnModel>>> GetkinhNghiemKH_CN()
         {
           if (_context.kinhNghiemKH_CN == null)
           {
               return NotFound();
           }
-            return await _context.kinhNghiemKH_CN.ToListAsync();
+          var list = await _context.kinhNghiemKH_CN.ToListAsync();
+            return _mapper.Map<List<KinhNghiemKH_CnModel>>(list);
         }
 
         // GET: api/KinhNghiemKH_CN/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<KinhNghiemKH_CN>> GetKinhNghiemKH_CN(int id)
+        public async Task<ActionResult<KinhNghiemKH_CnModel>> GetKinhNghiemKH_CN(int id)
         {
           if (_context.kinhNghiemKH_CN == null)
           {
@@ -46,20 +52,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return kinhNghiemKH_CN;
+            return _mapper.Map<KinhNghiemKH_CnModel>(kinhNghiemKH_CN);
         }
 
         // PUT: api/KinhNghiemKH_CN/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutKinhNghiemKH_CN(int id, KinhNghiemKH_CN kinhNghiemKH_CN)
+        public async Task<IActionResult> PutKinhNghiemKH_CN(int id, KinhNghiemKH_CnModel kinhNghiemKH_CN)
         {
             if (id != kinhNghiemKH_CN.Mahinhthuchoidong)
             {
                 return BadRequest();
             }
 
-            _context.Entry(kinhNghiemKH_CN).State = EntityState.Modified;
+            var chitiet = _mapper.Map<KinhNghiemKH_CN>(kinhNghiemKH_CN);
+            _context.kinhNghiemKH_CN!.Update(chitiet);
 
             try
             {
@@ -83,13 +90,14 @@ namespace StaffManage.Controllers
         // POST: api/KinhNghiemKH_CN
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<KinhNghiemKH_CN>> PostKinhNghiemKH_CN(KinhNghiemKH_CN kinhNghiemKH_CN)
+        public async Task<ActionResult<KinhNghiemKH_CN>> PostKinhNghiemKH_CN(KinhNghiemKH_CnModel kinhNghiemKH_CN)
         {
           if (_context.kinhNghiemKH_CN == null)
           {
               return Problem("Entity set 'StaffDbContext.kinhNghiemKH_CN'  is null.");
           }
-            _context.kinhNghiemKH_CN.Add(kinhNghiemKH_CN);
+            var chitiet = _mapper.Map<KinhNghiemKH_CN>(kinhNghiemKH_CN);
+            _context.kinhNghiemKH_CN.Add(chitiet);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetKinhNghiemKH_CN", new { id = kinhNghiemKH_CN.Mahinhthuchoidong }, kinhNghiemKH_CN);

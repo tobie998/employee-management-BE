@@ -2,38 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DeTaiDuAnKHCNThamGiasController : ControllerBase
+    public class DeTaiDuAnKHCNController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public DeTaiDuAnKHCNThamGiasController(StaffDbContext context)
+        public DeTaiDuAnKHCNController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        // GET: api/DeTaiDuAnKHCNThamGias
+        // GET: api/DeTaiDuAnKHCN
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DeTaiDuAnKHCNThamGia>>> GetdeTaiDuAn()
+        public async Task<ActionResult<IEnumerable<DeTaiDuAnKHCNModel>>> GetdeTaiDuAn()
         {
           if (_context.deTaiDuAn == null)
           {
               return NotFound();
           }
-            return await _context.deTaiDuAn.ToListAsync();
+            var list = await _context.deTaiDuAn.ToListAsync();
+            return _mapper.Map<List<DeTaiDuAnKHCNModel>>(list);
         }
 
-        // GET: api/DeTaiDuAnKHCNThamGias/5
+        // GET: api/DeTaiDuAnKHCN/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DeTaiDuAnKHCNThamGia>> GetDeTaiDuAnKHCNThamGia(int id)
+        public async Task<ActionResult<DeTaiDuAnKHCNModel>> GetDeTaiDuAnKHCNThamGia(int id)
         {
           if (_context.deTaiDuAn == null)
           {
@@ -46,20 +51,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return deTaiDuAnKHCNThamGia;
+            return _mapper.Map<DeTaiDuAnKHCNModel>(deTaiDuAnKHCNThamGia);
         }
 
         // PUT: api/DeTaiDuAnKHCNThamGias/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDeTaiDuAnKHCNThamGia(int id, DeTaiDuAnKHCNThamGia deTaiDuAnKHCNThamGia)
+        public async Task<IActionResult> PutDeTaiDuAnKHCNThamGia(int id, DeTaiDuAnKHCNModel deTaiDuAnKHCNThamGia)
         {
             if (id != deTaiDuAnKHCNThamGia.Madetai)
             {
                 return BadRequest();
             }
 
-            _context.Entry(deTaiDuAnKHCNThamGia).State = EntityState.Modified;
+            var chitiet = _mapper.Map<DeTaiDuAnKHCN>(deTaiDuAnKHCNThamGia);
+            _context.deTaiDuAn!.Update(chitiet);
 
             try
             {
@@ -83,16 +89,17 @@ namespace StaffManage.Controllers
         // POST: api/DeTaiDuAnKHCNThamGias
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<DeTaiDuAnKHCNThamGia>> PostDeTaiDuAnKHCNThamGia(DeTaiDuAnKHCNThamGia deTaiDuAnKHCNThamGia)
+        public async Task<ActionResult<DeTaiDuAnKHCN>> PostDeTaiDuAnKHCNThamGia(DeTaiDuAnKHCNModel deTaiDuAnKHCNThamGia)
         {
           if (_context.deTaiDuAn == null)
           {
               return Problem("Entity set 'StaffDbContext.deTaiDuAn'  is null.");
           }
-            _context.deTaiDuAn.Add(deTaiDuAnKHCNThamGia);
+            var chitiet = _mapper.Map<DeTaiDuAnKHCN>(deTaiDuAnKHCNThamGia);
+            _context.deTaiDuAn.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDeTaiDuAnKHCNThamGia", new { id = deTaiDuAnKHCNThamGia.Madetai }, deTaiDuAnKHCNThamGia);
+            return Ok();
         }
 
         // DELETE: api/DeTaiDuAnKHCNThamGias/5

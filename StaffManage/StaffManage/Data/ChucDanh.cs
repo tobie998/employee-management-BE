@@ -8,5 +8,11 @@ namespace StaffManage.Data
         public int Machucdanh { get; set; }
         [Required]
         public string Tenchucdanh { get; set; }
+
+        public ICollection<ChiTietChucDanh> chiTietChucDanhs { get; set; }
+        public ChucDanh()
+        {
+            chiTietChucDanhs = new HashSet<ChiTietChucDanh>();
+        }
     }
 }

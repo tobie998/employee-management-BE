@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
+using StaffManage.Models;
 
 namespace StaffManage.Controllers
 {
@@ -14,26 +16,29 @@ namespace StaffManage.Controllers
     public class QuaTrinhDaoTaosController : ControllerBase
     {
         private readonly StaffDbContext _context;
+        private readonly IMapper _mapper;
 
-        public QuaTrinhDaoTaosController(StaffDbContext context)
+        public QuaTrinhDaoTaosController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/QuaTrinhDaoTaos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<QuaTrinhDaoTao>>> GetquaTrinhDaoTao()
+        public async Task<ActionResult<IEnumerable<QuaTrinhDaoTaoModel>>> GetquaTrinhDaoTao()
         {
           if (_context.quaTrinhDaoTao == null)
           {
               return NotFound();
           }
-            return await _context.quaTrinhDaoTao.ToListAsync();
+          var list = await _context.quaTrinhDaoTao.ToListAsync();
+            return _mapper.Map<List<QuaTrinhDaoTaoModel>>(list);
         }
 
         // GET: api/QuaTrinhDaoTaos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<QuaTrinhDaoTao>> GetQuaTrinhDaoTao(int id)
+        public async Task<ActionResult<QuaTrinhDaoTaoModel>> GetQuaTrinhDaoTao(int id)
         {
           if (_context.quaTrinhDaoTao == null)
           {
@@ -46,20 +51,21 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
 
-            return quaTrinhDaoTao;
+            return _mapper.Map<QuaTrinhDaoTaoModel>(quaTrinhDaoTao);
         }
 
         // PUT: api/QuaTrinhDaoTaos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutQuaTrinhDaoTao(int id, QuaTrinhDaoTao quaTrinhDaoTao)
+        public async Task<IActionResult> PutQuaTrinhDaoTao(int id, QuaTrinhDaoTaoModel quaTrinhDaoTao)
         {
             if (id != quaTrinhDaoTao.Mabacdaotao)
             {
                 return BadRequest();
             }
 
-            _context.Entry(quaTrinhDaoTao).State = EntityState.Modified;
+            var chitiet = _mapper.Map<QuaTrinhDaoTao>(quaTrinhDaoTao);
+            _context.quaTrinhDaoTao!.Update(chitiet);
 
             try
             {
@@ -83,13 +89,14 @@ namespace StaffManage.Controllers
         // POST: api/QuaTrinhDaoTaos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<QuaTrinhDaoTao>> PostQuaTrinhDaoTao(QuaTrinhDaoTao quaTrinhDaoTao)
+        public async Task<ActionResult<QuaTrinhDaoTao>> PostQuaTrinhDaoTao(QuaTrinhDaoTaoModel quaTrinhDaoTao)
         {
           if (_context.quaTrinhDaoTao == null)
           {
               return Problem("Entity set 'StaffDbContext.quaTrinhDaoTao'  is null.");
           }
-            _context.quaTrinhDaoTao.Add(quaTrinhDaoTao);
+            var chitiet = _mapper.Map<QuaTrinhDaoTao>(quaTrinhDaoTao);
+            _context.quaTrinhDaoTao.Add(chitiet);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetQuaTrinhDaoTao", new { id = quaTrinhDaoTao.Mabacdaotao }, quaTrinhDaoTao);

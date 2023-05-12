@@ -39,11 +39,40 @@ namespace StaffManage.Data
         public ICollection<ChiTietGiaiThuong> chiTietGiaiThuongs { get; set; }
         public ICollection<ChiTietLinhVucNghienCuu> chiTietLinhVucNghienCuu { get; set; }
         public ICollection<ChiTietChucVu> chiTietChucVus { get; set; }
+        public ICollection<ChiTietChucDanh> chiTietChucDanhs { get; set; }
+        public ICollection<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTaos { get; set; }
+        public ICollection<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CNs { get; set; }
+        public ICollection<ChiTietTrinhDoNgoaiNgu> chiTietTrinhDoNgoaiNgu { get; set; }
+        public ICollection<NghienCuuSinhDaHuongDan> nghienCuuSinhDaHuongDan { get; set; }
+        public ICollection<ChiTietKyLuat> chiTietKyLuat { get; set; }
+        public ICollection<ChiTietKhenThuong> chiTietKhenThuong { get; set; }
+        public ICollection<ChiTietQuaTrinhCongTac> chiTietQuaTrinhCongTac { get; set; }
+        public ICollection<ChiTietCongTrinhKH_CN> chiTietCongTrinhKH_CN { get; set; }
+        public ICollection<ChiTietDeTaiDuAnKHCNThamGia> chiTietDeTaiDuAnKHCNThamGia { get; set; }
+        public ICollection<DeTaiDuAnKHCNChuTri> deTaiDuAnKHCNChuTri { get; set; }
+        public ICollection<CongTrinhVaKetQuaNghienCuuDuocApDung> congTrinhVaKetQuaNghienCuuDuocApDung { get; set; }
+        public ICollection<ChiTietVanBang> chiTietVanBang { get; set; }
+
+
         public CanBo()
         {
             chiTietGiaiThuongs = new HashSet<ChiTietGiaiThuong>();
             chiTietLinhVucNghienCuu = new HashSet<ChiTietLinhVucNghienCuu>();
             chiTietChucVus = new HashSet<ChiTietChucVu>();
+            chiTietChucDanhs = new HashSet<ChiTietChucDanh>();
+            chiTietQuaTrinhDaoTaos = new HashSet<ChiTietQuaTrinhDaoTao>();
+            chiTietVeKinhNghiemKH_CNs = new HashSet<ChiTietVeKinhNghiemKH_CN>();
+            chiTietTrinhDoNgoaiNgu = new HashSet<ChiTietTrinhDoNgoaiNgu>();
+            nghienCuuSinhDaHuongDan = new HashSet<NghienCuuSinhDaHuongDan>();
+            chiTietKyLuat = new HashSet<ChiTietKyLuat>();
+            chiTietKhenThuong = new HashSet<ChiTietKhenThuong>();
+            chiTietQuaTrinhCongTac = new HashSet<ChiTietQuaTrinhCongTac>();
+            chiTietCongTrinhKH_CN = new HashSet<ChiTietCongTrinhKH_CN>();
+            chiTietDeTaiDuAnKHCNThamGia = new HashSet<ChiTietDeTaiDuAnKHCNThamGia>();
+            deTaiDuAnKHCNChuTri = new HashSet<DeTaiDuAnKHCNChuTri>();
+            congTrinhVaKetQuaNghienCuuDuocApDung = new HashSet<CongTrinhVaKetQuaNghienCuuDuocApDung>();
+            chiTietVanBang = new HashSet<ChiTietVanBang>();
+
         }
     }
 }

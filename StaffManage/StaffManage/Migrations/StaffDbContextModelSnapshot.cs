@@ -91,6 +91,25 @@ namespace StaffManage.Migrations
                     b.ToTable("canBo");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.ChiTietChucDanh", b =>
+                {
+                    b.Property<int>("Machucdanh")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Tenchucdanh")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Machucdanh", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietChucDanh");
+                });
+
             modelBuilder.Entity("StaffManage.Data.ChiTietChucVu", b =>
                 {
                     b.Property<int>("Machucvu")
@@ -108,6 +127,71 @@ namespace StaffManage.Migrations
                     b.HasIndex("Macanbo");
 
                     b.ToTable("chiTietChucVu");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietCongTrinhKH_CN", b =>
+                {
+                    b.Property<int>("MacongtrinhKH")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoaicongtrinhKH")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Namcongbo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Noicongbo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TencongtrinhKH")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Vaitro")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MacongtrinhKH", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietCongTrinhKH_CN");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietDeTaiDuAnKHCNThamGia", b =>
+                {
+                    b.Property<int>("Madetai")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Tendetai")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Thoigianbatdau")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Thoigianketthuc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tinhtrang")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Madetai", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietDeTaiDuAnKHCNThamGia");
                 });
 
             modelBuilder.Entity("StaffManage.Data.ChiTietGiaiThuong", b =>
@@ -136,6 +220,54 @@ namespace StaffManage.Migrations
                     b.ToTable("ChiTietGiaiThuong");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.ChiTietKhenThuong", b =>
+                {
+                    b.Property<int>("Makhenthuong")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Ngayapdung")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Tennkhenthuong")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Makhenthuong", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietKhenThuong");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietKyLuat", b =>
+                {
+                    b.Property<int>("Makyluat")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Ngayapdung")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Tenkyluat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Makyluat", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietKyLuat");
+                });
+
             modelBuilder.Entity("StaffManage.Data.ChiTietLinhVucNghienCuu", b =>
                 {
                     b.Property<int>("Machuyennganh")
@@ -153,6 +285,147 @@ namespace StaffManage.Migrations
                     b.HasIndex("Macanbo");
 
                     b.ToTable("chiTietLinhVucNghienCuu");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietQuaTrinhCongTac", b =>
+                {
+                    b.Property<int>("Maquatrinhcongtac")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Coquancongtac")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Linhvucchuyenmon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Thoigian")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Vitricongtac")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Maquatrinhcongtac", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietQuaTrinhCongTac");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietQuaTrinhDaoTao", b =>
+                {
+                    b.Property<int>("Mabacdaotao")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Bacdaotao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Chuyennganh")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Namtotnghiep")
+                        .HasColumnType("int");
+
+                    b.HasKey("Mabacdaotao", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietQuaTrinhDaoTao");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietTrinhDoNgoaiNgu", b =>
+                {
+                    b.Property<int>("Mangoaingu")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Doc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nghe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Noi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tenngoaingu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Viet")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Mangoaingu", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietTrinhDoNgoaiNgu");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietVanBang", b =>
+                {
+                    b.Property<int>("Mavanbang")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Namcap")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Noidungvanbang")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tenvanbang")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Mavanbang", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietVanBang");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietVeKinhNghiemKH_CN", b =>
+                {
+                    b.Property<int>("Mahinhthuchoidong")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Hinhthuchoidong")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Solan")
+                        .HasColumnType("int");
+
+                    b.HasKey("Mahinhthuchoidong", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("chiTietVeKinhNghiemKH_CN");
                 });
 
             modelBuilder.Entity("StaffManage.Data.ChucDanh", b =>
@@ -206,7 +479,42 @@ namespace StaffManage.Migrations
                     b.ToTable("congTrinhKH_CN");
                 });
 
-            modelBuilder.Entity("StaffManage.Data.DeTaiDuAnKHCNThamGia", b =>
+            modelBuilder.Entity("StaffManage.Data.CongTrinhVaKetQuaNghienCuuDuocApDung", b =>
+                {
+                    b.Property<int>("Macongtrinhnghiencuu")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Diachiapdung")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Hinhthuc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Quymo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tencongtrinhnghiencuu")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Thoigian")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Macongtrinhnghiencuu", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("congTrinhVaKetQuaNghienCuuDuocApDung");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.DeTaiDuAnKHCN", b =>
                 {
                     b.Property<int>("Madetai")
                         .ValueGeneratedOnAdd()
@@ -221,6 +529,37 @@ namespace StaffManage.Migrations
                     b.HasKey("Madetai");
 
                     b.ToTable("deTaiDuAn");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.DeTaiDuAnKHCNChuTri", b =>
+                {
+                    b.Property<int>("Madetai")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Tendetai")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Thoigianbatdau")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Thoigianketthuc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tinhtrang")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Madetai", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("deTaiDuAnKHCNChuTri");
                 });
 
             modelBuilder.Entity("StaffManage.Data.DonVi", b =>
@@ -347,6 +686,38 @@ namespace StaffManage.Migrations
                     b.ToTable("linhVuc");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.NghienCuuSinhDaHuongDan", b =>
+                {
+                    b.Property<int>("MaNCS")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Macanbo")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Donvicongtac")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HotenNCS")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("NambaovecuaNCS")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Vaitro")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("MaNCS", "Macanbo");
+
+                    b.HasIndex("Macanbo");
+
+                    b.ToTable("nghienCuuSinhDaHuongDan");
+                });
+
             modelBuilder.Entity("StaffManage.Data.QuaTrinhDaoTao", b =>
                 {
                     b.Property<int>("Mabacdaotao")
@@ -409,6 +780,25 @@ namespace StaffManage.Migrations
                     b.Navigation("DonVi");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.ChiTietChucDanh", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietChucDanhs")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.ChucDanh", "ChucDanh")
+                        .WithMany("chiTietChucDanhs")
+                        .HasForeignKey("Machucdanh")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("ChucDanh");
+                });
+
             modelBuilder.Entity("StaffManage.Data.ChiTietChucVu", b =>
                 {
                     b.HasOne("StaffManage.Data.CanBo", "CanBo")
@@ -426,6 +816,44 @@ namespace StaffManage.Migrations
                     b.Navigation("CanBo");
 
                     b.Navigation("ChucVu");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietCongTrinhKH_CN", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietCongTrinhKH_CN")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.CongTrinhKH_CN", "CongTrinhKH_CN")
+                        .WithMany("chiTietCongTrinhKH_CN")
+                        .HasForeignKey("MacongtrinhKH")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("CongTrinhKH_CN");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietDeTaiDuAnKHCNThamGia", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietDeTaiDuAnKHCNThamGia")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.DeTaiDuAnKHCN", "deTaiDuAnKHCN")
+                        .WithMany("chiTietDeTaiDuAnKHCNThamGia")
+                        .HasForeignKey("Madetai")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("deTaiDuAnKHCN");
                 });
 
             modelBuilder.Entity("StaffManage.Data.ChiTietGiaiThuong", b =>
@@ -447,6 +875,44 @@ namespace StaffManage.Migrations
                     b.Navigation("GiaiThuong");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.ChiTietKhenThuong", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietKhenThuong")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.KhenThuong", "KhenThuong")
+                        .WithMany("chiTietKhenThuong")
+                        .HasForeignKey("Makhenthuong")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("KhenThuong");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietKyLuat", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietKyLuat")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.KyLuat", "KyLuat")
+                        .WithMany("chiTietKyLuat")
+                        .HasForeignKey("Makyluat")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("KyLuat");
+                });
+
             modelBuilder.Entity("StaffManage.Data.ChiTietLinhVucNghienCuu", b =>
                 {
                     b.HasOne("StaffManage.Data.CanBo", "CanBo")
@@ -466,13 +932,172 @@ namespace StaffManage.Migrations
                     b.Navigation("LinhVucNghienCuu");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.ChiTietQuaTrinhCongTac", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietQuaTrinhCongTac")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietQuaTrinhDaoTao", b =>
+                {
+                    b.HasOne("StaffManage.Data.QuaTrinhDaoTao", "QuaTrinhDaoTao")
+                        .WithMany("chiTietQuaTrinhDaoTaos")
+                        .HasForeignKey("Mabacdaotao")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietQuaTrinhDaoTaos")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("QuaTrinhDaoTao");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietTrinhDoNgoaiNgu", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietTrinhDoNgoaiNgu")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.TrinhDoNgoaiNgu", "TrinhDoNgoaiNgu")
+                        .WithMany("chiTietTrinhDoNgoaiNgu")
+                        .HasForeignKey("Mangoaingu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("TrinhDoNgoaiNgu");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietVanBang", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietVanBang")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.VanBangCanBo", "vanBangCanBo")
+                        .WithMany("chiTietVanBang")
+                        .HasForeignKey("Mavanbang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("vanBangCanBo");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChiTietVeKinhNghiemKH_CN", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("chiTietVeKinhNghiemKH_CNs")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.KinhNghiemKH_CN", "KinhNghiemKH_CN")
+                        .WithMany("chiTietVeKinhNghiemKH_CNs")
+                        .HasForeignKey("Mahinhthuchoidong")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("KinhNghiemKH_CN");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.CongTrinhVaKetQuaNghienCuuDuocApDung", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("congTrinhVaKetQuaNghienCuuDuocApDung")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.DeTaiDuAnKHCNChuTri", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("deTaiDuAnKHCNChuTri")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StaffManage.Data.DeTaiDuAnKHCN", "deTaiDuAnKHCN")
+                        .WithMany("deTaiDuAnKHCNChuTri")
+                        .HasForeignKey("Madetai")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+
+                    b.Navigation("deTaiDuAnKHCN");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.NghienCuuSinhDaHuongDan", b =>
+                {
+                    b.HasOne("StaffManage.Data.CanBo", "CanBo")
+                        .WithMany("nghienCuuSinhDaHuongDan")
+                        .HasForeignKey("Macanbo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CanBo");
+                });
+
             modelBuilder.Entity("StaffManage.Data.CanBo", b =>
                 {
+                    b.Navigation("chiTietChucDanhs");
+
                     b.Navigation("chiTietChucVus");
+
+                    b.Navigation("chiTietCongTrinhKH_CN");
+
+                    b.Navigation("chiTietDeTaiDuAnKHCNThamGia");
 
                     b.Navigation("chiTietGiaiThuongs");
 
+                    b.Navigation("chiTietKhenThuong");
+
+                    b.Navigation("chiTietKyLuat");
+
                     b.Navigation("chiTietLinhVucNghienCuu");
+
+                    b.Navigation("chiTietQuaTrinhCongTac");
+
+                    b.Navigation("chiTietQuaTrinhDaoTaos");
+
+                    b.Navigation("chiTietTrinhDoNgoaiNgu");
+
+                    b.Navigation("chiTietVanBang");
+
+                    b.Navigation("chiTietVeKinhNghiemKH_CNs");
+
+                    b.Navigation("congTrinhVaKetQuaNghienCuuDuocApDung");
+
+                    b.Navigation("deTaiDuAnKHCNChuTri");
+
+                    b.Navigation("nghienCuuSinhDaHuongDan");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.ChucDanh", b =>
+                {
+                    b.Navigation("chiTietChucDanhs");
                 });
 
             modelBuilder.Entity("StaffManage.Data.ChucVu", b =>
@@ -480,14 +1105,56 @@ namespace StaffManage.Migrations
                     b.Navigation("chiTietChucVus");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.CongTrinhKH_CN", b =>
+                {
+                    b.Navigation("chiTietCongTrinhKH_CN");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.DeTaiDuAnKHCN", b =>
+                {
+                    b.Navigation("chiTietDeTaiDuAnKHCNThamGia");
+
+                    b.Navigation("deTaiDuAnKHCNChuTri");
+                });
+
             modelBuilder.Entity("StaffManage.Data.GiaiThuong", b =>
                 {
                     b.Navigation("chiTietGiaiThuongs");
                 });
 
+            modelBuilder.Entity("StaffManage.Data.KhenThuong", b =>
+                {
+                    b.Navigation("chiTietKhenThuong");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.KinhNghiemKH_CN", b =>
+                {
+                    b.Navigation("chiTietVeKinhNghiemKH_CNs");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.KyLuat", b =>
+                {
+                    b.Navigation("chiTietKyLuat");
+                });
+
             modelBuilder.Entity("StaffManage.Data.LinhVucNghienCuu", b =>
                 {
                     b.Navigation("chiTietLinhVucNghienCuu");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.QuaTrinhDaoTao", b =>
+                {
+                    b.Navigation("chiTietQuaTrinhDaoTaos");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.TrinhDoNgoaiNgu", b =>
+                {
+                    b.Navigation("chiTietTrinhDoNgoaiNgu");
+                });
+
+            modelBuilder.Entity("StaffManage.Data.VanBangCanBo", b =>
+                {
+                    b.Navigation("chiTietVanBang");
                 });
 #pragma warning restore 612, 618
         }
