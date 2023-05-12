@@ -57,7 +57,7 @@ namespace StaffManage.Controllers
         // PUT: api/ChiTietQuaTrinhCongTacs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{maquatrinhcongtac}/{macanbo}")]
-        public async Task<IActionResult> PutChiTietQuaTrinhCongTac(int maquatrinhcongtac, string macanbo, ChiTietQuaTrinhCongTac chiTietQuaTrinhCongTac)
+        public async Task<IActionResult> PutChiTietQuaTrinhCongTac(int maquatrinhcongtac, string macanbo, ChiTietQuaTrinhCongTacModel chiTietQuaTrinhCongTac)
         {
             if (maquatrinhcongtac != chiTietQuaTrinhCongTac.Maquatrinhcongtac || macanbo != chiTietQuaTrinhCongTac.Macanbo)
             {

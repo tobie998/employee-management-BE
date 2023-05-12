@@ -48,6 +48,11 @@ namespace StaffManage.Data
         public ICollection<ChiTietKhenThuong> chiTietKhenThuong { get; set; }
         public ICollection<ChiTietQuaTrinhCongTac> chiTietQuaTrinhCongTac { get; set; }
         public ICollection<ChiTietCongTrinhKH_CN> chiTietCongTrinhKH_CN { get; set; }
+        public ICollection<ChiTietDeTaiDuAnKHCNThamGia> chiTietDeTaiDuAnKHCNThamGia { get; set; }
+        public ICollection<DeTaiDuAnKHCNChuTri> deTaiDuAnKHCNChuTri { get; set; }
+        public ICollection<CongTrinhVaKetQuaNghienCuuDuocApDung> congTrinhVaKetQuaNghienCuuDuocApDung { get; set; }
+        public ICollection<ChiTietVanBang> chiTietVanBang { get; set; }
+
 
         public CanBo()
         {
@@ -63,6 +68,11 @@ namespace StaffManage.Data
             chiTietKhenThuong = new HashSet<ChiTietKhenThuong>();
             chiTietQuaTrinhCongTac = new HashSet<ChiTietQuaTrinhCongTac>();
             chiTietCongTrinhKH_CN = new HashSet<ChiTietCongTrinhKH_CN>();
+            chiTietDeTaiDuAnKHCNThamGia = new HashSet<ChiTietDeTaiDuAnKHCNThamGia>();
+            deTaiDuAnKHCNChuTri = new HashSet<DeTaiDuAnKHCNChuTri>();
+            congTrinhVaKetQuaNghienCuuDuocApDung = new HashSet<CongTrinhVaKetQuaNghienCuuDuocApDung>();
+            chiTietVanBang = new HashSet<ChiTietVanBang>();
+
         }
     }
 }

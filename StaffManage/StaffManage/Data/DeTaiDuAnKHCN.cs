@@ -9,5 +9,13 @@ namespace StaffManage.Data
         [Required]
         public string Tendetai { get; set; }
 
+        public ICollection<ChiTietDeTaiDuAnKHCNThamGia> chiTietDeTaiDuAnKHCNThamGia { get; set; }
+        public ICollection<DeTaiDuAnKHCNChuTri> deTaiDuAnKHCNChuTri { get; set; }
+        public DeTaiDuAnKHCN()
+        {
+            chiTietDeTaiDuAnKHCNThamGia = new HashSet<ChiTietDeTaiDuAnKHCNThamGia>();
+            deTaiDuAnKHCNChuTri = new HashSet<DeTaiDuAnKHCNChuTri>();
+        }
+
     }
 }

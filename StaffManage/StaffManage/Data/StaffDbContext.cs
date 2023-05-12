@@ -35,6 +35,10 @@ namespace StaffManage.Data
         public DbSet<ChiTietKhenThuong> chiTietKhenThuong { get; set; }
         public DbSet<ChiTietQuaTrinhCongTac> chiTietQuaTrinhCongTac { get; set; }
         public DbSet<ChiTietCongTrinhKH_CN> chiTietCongTrinhKH_CN { get; set; }
+        public DbSet<ChiTietDeTaiDuAnKHCNThamGia> chiTietDeTaiDuAnKHCNThamGia { get; set; }
+        public DbSet<DeTaiDuAnKHCNChuTri> deTaiDuAnKHCNChuTri { get; set; }
+        public DbSet<CongTrinhVaKetQuaNghienCuuDuocApDung> congTrinhVaKetQuaNghienCuuDuocApDung { get; set; }
+        public DbSet<ChiTietVanBang> chiTietVanBang { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -178,6 +182,50 @@ namespace StaffManage.Data
 
             });
 
+            modelBuilder.Entity<ChiTietDeTaiDuAnKHCNThamGia>(entity =>
+            {
+                entity.HasKey(c => new { c.Madetai, c.Macanbo });
+
+                entity.HasOne(e => e.deTaiDuAnKHCN).WithMany(e => e.chiTietDeTaiDuAnKHCNThamGia)
+                .HasForeignKey(e => e.Madetai);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietDeTaiDuAnKHCNThamGia)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<DeTaiDuAnKHCNChuTri>(entity =>
+            {
+                entity.HasKey(c => new { c.Madetai, c.Macanbo });
+
+                entity.HasOne(e => e.deTaiDuAnKHCN).WithMany(e => e.deTaiDuAnKHCNChuTri)
+                .HasForeignKey(e => e.Madetai);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.deTaiDuAnKHCNChuTri)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<CongTrinhVaKetQuaNghienCuuDuocApDung>(entity =>
+            {
+                entity.HasKey(c => new { c.Macongtrinhnghiencuu, c.Macanbo });
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.congTrinhVaKetQuaNghienCuuDuocApDung)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
+
+            modelBuilder.Entity<ChiTietVanBang>(entity =>
+            {
+                entity.HasKey(c => new { c.Mavanbang, c.Macanbo });
+
+                entity.HasOne(e => e.vanBangCanBo).WithMany(e => e.chiTietVanBang)
+                .HasForeignKey(e => e.Mavanbang);
+
+                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietVanBang)
+                .HasForeignKey(e => e.Macanbo);
+
+            });
             base.OnModelCreating(modelBuilder);
         }
 

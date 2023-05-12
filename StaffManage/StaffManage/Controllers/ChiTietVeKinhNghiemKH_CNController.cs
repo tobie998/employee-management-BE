@@ -18,7 +18,6 @@ namespace StaffManage.Controllers
         private readonly StaffDbContext _context;
         private readonly IMapper _mapper;
 
-
         public ChiTietVeKinhNghiemKH_CNController(StaffDbContext context, IMapper mapper)
         {
             _context = context;
