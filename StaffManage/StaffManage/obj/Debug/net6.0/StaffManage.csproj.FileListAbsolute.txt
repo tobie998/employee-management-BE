@@ -544,3 +544,12 @@ C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\obj\Debu
 C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\obj\Debug\net6.0\StaffManage.pdb
 C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\obj\Debug\net6.0\StaffManage.genruntimeconfig.cache
 C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\obj\Debug\net6.0\ref\StaffManage.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
