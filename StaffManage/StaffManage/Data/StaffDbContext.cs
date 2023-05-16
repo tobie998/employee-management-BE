@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using StaffManage.Models;
 
 namespace StaffManage.Data
@@ -39,6 +40,7 @@ namespace StaffManage.Data
         public DbSet<DeTaiDuAnKHCNChuTri> deTaiDuAnKHCNChuTri { get; set; }
         public DbSet<CongTrinhVaKetQuaNghienCuuDuocApDung> congTrinhVaKetQuaNghienCuuDuocApDung { get; set; }
         public DbSet<ChiTietVanBang> chiTietVanBang { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

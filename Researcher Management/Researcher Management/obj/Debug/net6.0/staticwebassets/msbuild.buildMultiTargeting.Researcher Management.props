@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Researcher Management.props" />
+</Project>
