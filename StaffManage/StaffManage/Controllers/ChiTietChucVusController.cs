@@ -100,6 +100,7 @@ namespace StaffManage.Controllers
 
             var chitiet = _mapper.Map<ChiTietChucVu>(chiTietChucVu);
             _context.chiTietChucVu.Add(chitiet);
+            
             try
             {
                 await _context.SaveChangesAsync();

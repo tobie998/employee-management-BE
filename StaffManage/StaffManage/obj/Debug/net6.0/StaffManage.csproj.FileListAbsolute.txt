@@ -553,3 +553,5 @@ C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debu
 C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\QuangTd\Desktop\employee-management-BE\StaffManage\StaffManage\bin\Debug\net6.0\System.Threading.Channels.dll

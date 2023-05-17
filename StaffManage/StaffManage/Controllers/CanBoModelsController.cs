@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
 using StaffManage.Models;
+using StaffManage.Repositories;
 
 namespace StaffManage.Controllers
 {
@@ -19,11 +20,12 @@ namespace StaffManage.Controllers
     {
         private readonly StaffDbContext _context;
         private readonly IMapper _mapper;
-
-        public CanBoModelsController(StaffDbContext context, IMapper mapper)
+        private readonly IRabitMQProducer _rabitMQProducer;
+        public CanBoModelsController(StaffDbContext context, IMapper mapper, IRabitMQProducer rabitMQProducer)
         {
             _context = context;
             _mapper = mapper;
+            _rabitMQProducer = rabitMQProducer;
         }
 
         // GET: api/CanBoModels
@@ -99,9 +101,24 @@ namespace StaffManage.Controllers
           }
           var canBo = _mapper.Map<CanBo>(canBoModel);
           _context.canBo.Add(canBo);
+            
             try
             {
                 await _context.SaveChangesAsync();
+
+                // tạo model mới để truyền message
+                CanBoNghienCuu canBoNghienCuu = new CanBoNghienCuu();
+                canBoNghienCuu.Macanbonghiencuu = canBoModel.Macanbo;
+                canBoNghienCuu.Chunhiemdetai = canBoModel.Hoten;
+                var chucDanh = await _context.chucDanh.FirstOrDefaultAsync(a => a.Machucdanh.Equals(canBoModel.Macanbo));
+                canBoNghienCuu.Chucdanhnghenghiep = chucDanh.Tenchucdanh;
+                canBoNghienCuu.Hocham = canBoModel.Hocham;
+                canBoNghienCuu.Dienthoai = canBoModel.Mobile;
+                canBoNghienCuu.Email = canBoModel.Email;
+                var donvi = await _context.donvi.FindAsync(canBoModel.Macanbo);
+                canBoNghienCuu.Khoacongtac = donvi.Tendonvi;
+                canBoNghienCuu.status = 1; //add
+                _rabitMQProducer.SendProductMessage(canBoNghienCuu);
             }
             catch (DbUpdateException)
             {

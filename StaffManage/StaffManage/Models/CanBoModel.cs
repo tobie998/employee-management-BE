@@ -5,7 +5,7 @@ namespace StaffManage.Models
     public class CanBoModel
     {
         [Key]
-        public string Macanbo { get; set; }
+        public String Macanbo { get; set; }
         public int Madonvi { get; set; }
         public string Hoten { get; set; }
         public int Namsinh { get; set; }
