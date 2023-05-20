@@ -2,7 +2,7 @@
 {
     public class QuaTrinhDaoTaoModel
     {
-        public int Mabacdaotao { get; set; }
-        public string Bacdaotao { get; set; }
+        public int MaBacDaoTao { get; set; }
+        public string BacDaoTao { get; set; }
     }
 }

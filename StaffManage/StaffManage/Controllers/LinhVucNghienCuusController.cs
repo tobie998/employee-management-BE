@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-          var linhvuc = await _context.linhVuc.ToListAsync();
+          var linhvuc = await _context.linhVuc.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<LinhVucNghienCuuModel>>(linhvuc);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var linhVucNghienCuu = await _context.linhVuc.FindAsync(id);
+            var linhVucNghienCuu = await _context.linhVuc.SingleOrDefaultAsync(cb => cb.Machuyennganh == id && cb.isDelete == 0);
 
             if (linhVucNghienCuu == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLinhVucNghienCuu(int id, LinhVucNghienCuuModel linhVucNghienCuu)
         {
-            if (id != linhVucNghienCuu.Machuyennganh)
+            if (id != linhVucNghienCuu.MaChuyenNganh)
             {
                 return BadRequest();
             }
@@ -99,7 +99,7 @@ namespace StaffManage.Controllers
             _context.linhVuc.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLinhVucNghienCuu", new { id = linhVucNghienCuu.Machuyennganh }, linhVucNghienCuu);
+            return CreatedAtAction("GetLinhVucNghienCuu", new { id = linhVucNghienCuu.MaChuyenNganh }, linhVucNghienCuu);
         }
 
         // DELETE: api/LinhVucNghienCuus/5
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.linhVuc.Remove(linhVucNghienCuu);
+            linhVucNghienCuu.isDelete = 1;
+            _context.linhVuc.Update(linhVucNghienCuu);
             await _context.SaveChangesAsync();
 
             return NoContent();

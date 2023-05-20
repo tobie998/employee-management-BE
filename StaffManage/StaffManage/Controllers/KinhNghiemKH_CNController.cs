@@ -33,7 +33,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-          var list = await _context.kinhNghiemKH_CN.ToListAsync();
+          var list = await _context.kinhNghiemKH_CN.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<KinhNghiemKH_CnModel>>(list);
         }
 
@@ -45,7 +45,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var kinhNghiemKH_CN = await _context.kinhNghiemKH_CN.FindAsync(id);
+            var kinhNghiemKH_CN = await _context.kinhNghiemKH_CN.SingleOrDefaultAsync(cb => cb.Mahinhthuchoidong == id && cb.isDelete == 0);
 
             if (kinhNghiemKH_CN == null)
             {
@@ -60,7 +60,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutKinhNghiemKH_CN(int id, KinhNghiemKH_CnModel kinhNghiemKH_CN)
         {
-            if (id != kinhNghiemKH_CN.Mahinhthuchoidong)
+            if (id != kinhNghiemKH_CN.MaHinhThucHoiDong)
             {
                 return BadRequest();
             }
@@ -100,7 +100,7 @@ namespace StaffManage.Controllers
             _context.kinhNghiemKH_CN.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetKinhNghiemKH_CN", new { id = kinhNghiemKH_CN.Mahinhthuchoidong }, kinhNghiemKH_CN);
+            return CreatedAtAction("GetKinhNghiemKH_CN", new { id = kinhNghiemKH_CN.MaHinhThucHoiDong }, kinhNghiemKH_CN);
         }
 
         // DELETE: api/KinhNghiemKH_CN/5
@@ -116,8 +116,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.kinhNghiemKH_CN.Remove(kinhNghiemKH_CN);
+            kinhNghiemKH_CN.isDelete = 1;
+            _context.kinhNghiemKH_CN.Update(kinhNghiemKH_CN);
             await _context.SaveChangesAsync();
 
             return NoContent();

@@ -2,10 +2,10 @@
 {
     public class ChiTietGiaiThuongModel
     {
-        public int Magiaithuong { get; set; }
-        public string Macanbo { get; set; }
-        public string Hinhthuc { get; set; }
-        public string Noidung { get; set; }
-        public int Namtangthuong { get; set; }
+        public int MaGiaiThuong { get; set; }
+        public string MaCanBo { get; set; }
+        public string HinhThuc { get; set; }
+        public string NoiDung { get; set; }
+        public int NamTangThuong { get; set; }
     }
 }

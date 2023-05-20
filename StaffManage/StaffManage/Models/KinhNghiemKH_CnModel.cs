@@ -2,7 +2,7 @@
 {
     public class KinhNghiemKH_CnModel
     {
-        public int Mahinhthuchoidong { get; set; }
-        public string Hinhthuchoidong { get; set; }
+        public int MaHinhThucHoiDong { get; set; }
+        public string HinhThucHoiDong { get; set; }
     }
 }

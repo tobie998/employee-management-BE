@@ -9,6 +9,8 @@
         public string Quymo { get; set; }
         public string Diachiapdung { get; set; }
         public string Thoigian { get; set; }
+        public int isDelete { get; set; } = 0;
+
         public CanBo CanBo { get; set; }
 
 

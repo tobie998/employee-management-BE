@@ -8,6 +8,7 @@ using StaffManage.Repositories;
 using System.Text;
 using System.Configuration;
 using StaffManage;
+using StaffManage.RabitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,13 +28,14 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddDbContext<StaffDbContext>(option => {
+builder.Services.AddDbContext<StaffDbContext>(option =>
+{
     option.UseSqlServer(builder.Configuration.GetConnectionString("QuanLyCanBo"));
 });
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-builder.Services.AddScoped<IDonViRepository,DonViRepository>();
+builder.Services.AddScoped<IDonViRepository, DonViRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IRabitMQProducer, RabitMQProducer>();
 
@@ -42,11 +44,13 @@ builder.Services.Configure<AppSettings>(appSettingsSection);
 var appSettings = appSettingsSection.Get<AppSettings>();
 var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
-builder.Services.AddAuthentication(options => {
+builder.Services.AddAuthentication(options =>
+{
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options => {
+}).AddJwtBearer(options =>
+{
     options.SaveToken = true;
     options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters

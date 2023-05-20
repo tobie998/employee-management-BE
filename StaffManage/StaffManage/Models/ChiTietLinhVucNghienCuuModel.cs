@@ -2,8 +2,8 @@
 {
     public class ChiTietLinhVucNghienCuuModel
     {
-        public int Machuyennganh { get; set; }
-        public string Macanbo { get; set; }
-        public string Tenchuyennganh { get; set; }
+        public int MaChuyenNganh { get; set; }
+        public string MaCanbo { get; set; }
+        public string TenChuyenNganh { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-          var list = await _context.quaTrinhDaoTao.ToListAsync();
+          var list = await _context.quaTrinhDaoTao.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<QuaTrinhDaoTaoModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var quaTrinhDaoTao = await _context.quaTrinhDaoTao.FindAsync(id);
+            var quaTrinhDaoTao = await _context.quaTrinhDaoTao.SingleOrDefaultAsync(cb => cb.Mabacdaotao == id && cb.isDelete == 0);
 
             if (quaTrinhDaoTao == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutQuaTrinhDaoTao(int id, QuaTrinhDaoTaoModel quaTrinhDaoTao)
         {
-            if (id != quaTrinhDaoTao.Mabacdaotao)
+            if (id != quaTrinhDaoTao.MaBacDaoTao)
             {
                 return BadRequest();
             }
@@ -99,7 +99,7 @@ namespace StaffManage.Controllers
             _context.quaTrinhDaoTao.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetQuaTrinhDaoTao", new { id = quaTrinhDaoTao.Mabacdaotao }, quaTrinhDaoTao);
+            return CreatedAtAction("GetQuaTrinhDaoTao", new { id = quaTrinhDaoTao.MaBacDaoTao }, quaTrinhDaoTao);
         }
 
         // DELETE: api/QuaTrinhDaoTaos/5
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.quaTrinhDaoTao.Remove(quaTrinhDaoTao);
+            quaTrinhDaoTao.isDelete = 1;
+            _context.quaTrinhDaoTao.Update(quaTrinhDaoTao);
             await _context.SaveChangesAsync();
 
             return NoContent();

@@ -2,12 +2,12 @@
 {
     public class CongTrinhVaKetQuaNghienCuuDuocApDungModel
     {
-        public int Macongtrinhnghiencuu { get; set; }
-        public string Macanbo { get; set; }
-        public string Tencongtrinhnghiencuu { get; set; }
-        public string Hinhthuc { get; set; }
-        public string Quymo { get; set; }
-        public string Diachiapdung { get; set; }
-        public string Thoigian { get; set; }
+        public int MaCongTrinhNghienCuu { get; set; }
+        public string MaCanBo { get; set; }
+        public string TenCongTrinhNghienCuu { get; set; }
+        public string HinhThuc { get; set; }
+        public string QuyMo { get; set; }
+        public string DiaChiApDung { get; set; }
+        public string ThoiGian { get; set; }
     }
 }

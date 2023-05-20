@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var list = await _context.khenThuong.ToListAsync();
+            var list = await _context.khenThuong.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<KhenThuongModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var khenThuong = await _context.khenThuong.FindAsync(id);
+            var khenThuong = await _context.khenThuong.SingleOrDefaultAsync(cb => cb.Makhenthuong == id && cb.isDelete == 0);
 
             if (khenThuong == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutKhenThuong(int id, KhenThuongModel khenThuong)
         {
-            if (id != khenThuong.Makhenthuong)
+            if (id != khenThuong.MaKhenThuong)
             {
                 return BadRequest();
             }
@@ -116,8 +116,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.khenThuong.Remove(khenThuong);
+            khenThuong.isDelete = 1;
+            _context.khenThuong.Update(khenThuong);
             await _context.SaveChangesAsync();
 
             return NoContent();

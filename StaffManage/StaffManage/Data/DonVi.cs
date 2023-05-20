@@ -15,5 +15,7 @@ namespace StaffManage.Data
         [MaxLength(13)]
         public string Dienthoai { get; set; }
         public string Website { get; set; }
+        public int isDelete { get; set; } = 0;
+
     }
 }

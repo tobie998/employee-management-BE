@@ -6,7 +6,7 @@ namespace StaffManage.Data
     {
         public int Makhenthuong { get; set; }
         public string Macanbo { get; set; }
-        public string Tennkhenthuong { get; set; }
+        public string Tenkhenthuong { get; set; }
         [MaxLength(50)]
         public string Ngayapdung { get; set; }
         public CanBo CanBo { get; set; }

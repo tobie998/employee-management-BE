@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var list = await _context.deTaiDuAn.ToListAsync();
+            var list = await _context.deTaiDuAn.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<DeTaiDuAnKHCNModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var deTaiDuAnKHCNThamGia = await _context.deTaiDuAn.FindAsync(id);
+            var deTaiDuAnKHCNThamGia = await _context.deTaiDuAn.SingleOrDefaultAsync(cb => cb.Madetai == id && cb.isDelete == 0);
 
             if (deTaiDuAnKHCNThamGia == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDeTaiDuAnKHCNThamGia(int id, DeTaiDuAnKHCNModel deTaiDuAnKHCNThamGia)
         {
-            if (id != deTaiDuAnKHCNThamGia.Madetai)
+            if (id != deTaiDuAnKHCNThamGia.MaDeTai)
             {
                 return BadRequest();
             }
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.deTaiDuAn.Remove(deTaiDuAnKHCNThamGia);
+            deTaiDuAnKHCNThamGia.isDelete = 1;
+            _context.deTaiDuAn.Update(deTaiDuAnKHCNThamGia);
             await _context.SaveChangesAsync();
 
             return NoContent();

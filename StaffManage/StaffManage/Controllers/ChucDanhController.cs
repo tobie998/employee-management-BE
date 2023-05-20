@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-          var list = await _context.chucDanh.ToListAsync();
+          var list = await _context.chucDanh.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<ChucDanhModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var chucDanh = await _context.chucDanh.FindAsync(id);
+            var chucDanh = await _context.chucDanh.SingleOrDefaultAsync(cb => cb.Machucdanh == id && cb.isDelete == 0);
 
             if (chucDanh == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutChucDanh(int id, ChucDanhModel chucDanh)
         {
-            if (id != chucDanh.Machucdanh)
+            if (id != chucDanh.MaChucDanh)
             {
                 return BadRequest();
             }
@@ -100,7 +100,7 @@ namespace StaffManage.Controllers
 
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetChucDanh", new { id = chucDanh.Machucdanh }, chucDanh);
+            return CreatedAtAction("GetChucDanh", new { id = chucDanh.MaChucDanh }, chucDanh);
         }
 
         // DELETE: api/ChucDanh/5
@@ -116,8 +116,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.chucDanh.Remove(chucDanh);
+            chucDanh.isDelete = 1;
+            _context.chucDanh.Update(chucDanh);
             await _context.SaveChangesAsync();
 
             return NoContent();

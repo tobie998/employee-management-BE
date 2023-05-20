@@ -9,13 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StaffManage.Data;
 using StaffManage.Models;
-using StaffManage.Repositories;
+using StaffManage.RabitMQ;
 
 namespace StaffManage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CanBoModelsController : ControllerBase
     {
         private readonly StaffDbContext _context;
@@ -36,7 +35,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-          var canbos =  await _context.canBo.ToListAsync(); ;
+          var canbos =  await _context.canBo.Where(e => e.isDelete == 0).ToListAsync(); ;
           return _mapper.Map<List<CanBoModel>>(canbos);
         }
 
@@ -48,7 +47,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var canBo = await _context.canBo.FindAsync(id);
+            var canBo = await _context.canBo.SingleOrDefaultAsync(cb => cb.Macanbo == id && cb.isDelete == 0); 
 
             if (canBo == null)
             {
@@ -63,7 +62,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCanBoModel(string id, CanBoModel canBoModel)
         {
-            if (id != canBoModel.Macanbo)
+            if (id != canBoModel.MaCanBo)
             {
                 return BadRequest();
             }
@@ -107,22 +106,22 @@ namespace StaffManage.Controllers
                 await _context.SaveChangesAsync();
 
                 // tạo model mới để truyền message
-                CanBoNghienCuu canBoNghienCuu = new CanBoNghienCuu();
+                /*CanBoNghienCuu canBoNghienCuu = new CanBoNghienCuu();
                 canBoNghienCuu.Macanbonghiencuu = canBoModel.Macanbo;
                 canBoNghienCuu.Chunhiemdetai = canBoModel.Hoten;
-                var chucDanh = await _context.chucDanh.FirstOrDefaultAsync(a => a.Machucdanh.Equals(canBoModel.Macanbo));
-                canBoNghienCuu.Chucdanhnghenghiep = chucDanh.Tenchucdanh;
+                var chucDanh = await _context.chiTietChucDanh.FirstOrDefaultAsync(a => a.Macanbo.Equals(canBoModel.Macanbo));
+                canBoNghienCuu.Chucdanhnghenghiep = chucDanh != null ? chucDanh.Tenchucdanh : "";
                 canBoNghienCuu.Hocham = canBoModel.Hocham;
                 canBoNghienCuu.Dienthoai = canBoModel.Mobile;
                 canBoNghienCuu.Email = canBoModel.Email;
-                var donvi = await _context.donvi.FindAsync(canBoModel.Macanbo);
+                var donvi = await _context.donvi.FindAsync(canBoModel.Madonvi);
                 canBoNghienCuu.Khoacongtac = donvi.Tendonvi;
                 canBoNghienCuu.status = 1; //add
-                _rabitMQProducer.SendProductMessage(canBoNghienCuu);
+                _rabitMQProducer.SendProductMessage(canBoNghienCuu);*/
             }
             catch (DbUpdateException)
             {
-                if (CanBoModelExists(canBoModel.Macanbo))
+                if (CanBoModelExists(canBoModel.MaCanBo))
                 {
                     return Conflict();
                 }
@@ -149,7 +148,8 @@ namespace StaffManage.Controllers
                 return NotFound();
             }
             var canBo = _mapper.Map<CanBo>(canBoModel);
-            _context.canBo.Remove(canBo);
+            canBo.isDelete = 1;
+            _context.canBo.Update(canBo);
             await _context.SaveChangesAsync();
 
             return NoContent();

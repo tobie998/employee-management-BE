@@ -4,9 +4,9 @@ namespace StaffManage.Models
 {
     public class ChiTietKyLuatModel
     {
-        public int Makyluat { get; set; }
-        public string Macanbo { get; set; }
-        public string Tenkyluat { get; set; }
-        public string Ngayapdung { get; set; }
+        public int MaKyLuat { get; set; }
+        public string MaCanBo { get; set; }
+        public string TenKyLuat { get; set; }
+        public string NgayApDung { get; set; }
     }
 }

@@ -2,10 +2,10 @@
 {
     public class ChiTietVanBangModel
     {
-        public int Mavanbang { get; set; }
-        public string Macanbo { get; set; }
-        public string Tenvanbang { get; set; }
-        public string Noidungvanbang { get; set; }
-        public int Namcap { get; set; }
+        public int MaVanBang { get; set; }
+        public string MaCanBo { get; set; }
+        public string TenVanBang { get; set; }
+        public string NoiDungVanBang { get; set; }
+        public int NamCap { get; set; }
     }
 }

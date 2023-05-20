@@ -35,6 +35,7 @@ namespace StaffManage.Data
 
         [ForeignKey("Madonvi")]
         public DonVi DonVi { get; set; }
+        public int isDelete { get; set; } = 0;
 
         public ICollection<ChiTietGiaiThuong> chiTietGiaiThuongs { get; set; }
         public ICollection<ChiTietLinhVucNghienCuu> chiTietLinhVucNghienCuu { get; set; }

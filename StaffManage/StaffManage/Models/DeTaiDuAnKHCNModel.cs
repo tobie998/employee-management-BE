@@ -2,7 +2,7 @@
 {
     public class DeTaiDuAnKHCNModel
     {
-        public int Madetai { get; set; }
-        public string Tendetai { get; set; }
+        public int MaDeTai { get; set; }
+        public string TenDeTai { get; set; }
     }
 }

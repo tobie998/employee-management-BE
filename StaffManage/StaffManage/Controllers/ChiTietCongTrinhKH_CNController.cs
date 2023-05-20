@@ -61,7 +61,7 @@ namespace StaffManage.Controllers
         [HttpPut("{macongtrinhKH}/{macanbo}")]
         public async Task<IActionResult> PutChiTietCongTrinhKH_CN(int macongtrinhKH, string macanbo, ChiTietCongTrinhKH_CNModel chiTietCongTrinhKH_CN)
         {
-            if (macongtrinhKH != chiTietCongTrinhKH_CN.MacongtrinhKH || macanbo != chiTietCongTrinhKH_CN.Macanbo)
+            if (macongtrinhKH != chiTietCongTrinhKH_CN.MaCongTrinhKH || macanbo != chiTietCongTrinhKH_CN.MaCanBo)
             {
                 return BadRequest();
             }
@@ -104,7 +104,7 @@ namespace StaffManage.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ChiTietCongTrinhKH_CNExists(chiTietCongTrinhKH_CN.MacongtrinhKH, chiTietCongTrinhKH_CN.Macanbo))
+                if (ChiTietCongTrinhKH_CNExists(chiTietCongTrinhKH_CN.MaCongTrinhKH, chiTietCongTrinhKH_CN.MaCanBo))
                 {
                     return Conflict();
                 }

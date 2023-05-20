@@ -2,7 +2,7 @@
 {
     public class GiaiThuongModel
     {
-        public int Magiaithuong { get; set; }
-        public string Hinhthuc { get; set; }
+        public int MaGiaiThuong { get; set; }
+        public string HinhThuc { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var list = await _context.kyLuat.ToListAsync();
+            var list = await _context.kyLuat.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<KyLuatModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var kyLuat = await _context.kyLuat.FindAsync(id);
+            var kyLuat = await _context.kyLuat.SingleOrDefaultAsync(cb => cb.Makyluat == id && cb.isDelete == 0);
 
             if (kyLuat == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutKyLuat(int id, KyLuatModel kyLuat)
         {
-            if (id != kyLuat.Makyluat)
+            if (id != kyLuat.MaKyLuat)
             {
                 return BadRequest();
             }
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.kyLuat.Remove(kyLuat);
+            kyLuat.isDelete = 1;
+            _context.kyLuat.Update(kyLuat);
             await _context.SaveChangesAsync();
 
             return NoContent();

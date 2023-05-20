@@ -28,7 +28,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            return await _context.donvi.ToListAsync();
+            return await _context.donvi.Where(e => e.isDelete == 0).ToListAsync();
         }
 
         // GET: api/DonVi/5
@@ -39,7 +39,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var donVi = await _context.donvi.FindAsync(id);
+            var donVi = await _context.donvi.SingleOrDefaultAsync(cb => cb.Madonvi == id && cb.isDelete == 0);
 
             if (donVi == null)
             {
@@ -108,8 +108,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.donvi.Remove(donVi);
+            donVi.isDelete = 1;
+            _context.donvi.Update(donVi);
             await _context.SaveChangesAsync();
 
             return NoContent();

@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var list = await _context.vanBang.ToListAsync();
+            var list = await _context.vanBang.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<VanBangCanBoModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var vanBangCanBo = await _context.vanBang.FindAsync(id);
+            var vanBangCanBo = await _context.vanBang.SingleOrDefaultAsync(cb => cb.Mavanbang == id && cb.isDelete == 0);
 
             if (vanBangCanBo == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVanBangCanBo(int id, VanBangCanBoModel vanBangCanBo)
         {
-            if (id != vanBangCanBo.Mavanbang)
+            if (id != vanBangCanBo.MaVanBang)
             {
                 return BadRequest();
             }
@@ -114,8 +114,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.vanBang.Remove(vanBangCanBo);
+            vanBangCanBo.isDelete = 1;
+            _context.vanBang.Update(vanBangCanBo);
             await _context.SaveChangesAsync();
 
             return NoContent();

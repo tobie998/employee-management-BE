@@ -2,7 +2,7 @@
 {
     public class LinhVucNghienCuuModel
     {
-        public int Machuyennganh { get; set; }
-        public string Tenchuyennganh { get; set; }
+        public int MaChuyenNganh { get; set; }
+        public string TenChuyenNganh { get; set; }
     }
 }

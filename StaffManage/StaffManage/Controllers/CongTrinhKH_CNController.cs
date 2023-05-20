@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var list = await _context.congTrinhKH_CN.ToListAsync();
+            var list = await _context.congTrinhKH_CN.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<CongTrinhKH_CNModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var congTrinhKH_CN = await _context.congTrinhKH_CN.FindAsync(id);
+            var congTrinhKH_CN = await _context.congTrinhKH_CN.SingleOrDefaultAsync(cb => cb.MacongtrinhKH == id && cb.isDelete == 0);
 
             if (congTrinhKH_CN == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCongTrinhKH_CN(int id, CongTrinhKH_CNModel congTrinhKH_CN)
         {
-            if (id != congTrinhKH_CN.MacongtrinhKH)
+            if (id != congTrinhKH_CN.MaCongTrinhKH)
             {
                 return BadRequest();
             }
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.congTrinhKH_CN.Remove(congTrinhKH_CN);
+            congTrinhKH_CN.isDelete = 1;
+            _context.congTrinhKH_CN.Update(congTrinhKH_CN);
             await _context.SaveChangesAsync();
 
             return NoContent();

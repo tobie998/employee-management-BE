@@ -2,7 +2,7 @@
 {
     public class TrinhDoNgoaiNguModel
     {
-        public int Mangoaingu { get; set; }
-        public string Tenngoaingu { get; set; }
+        public int MaNgoaiNgu { get; set; }
+        public string TenNgoaiNgu { get; set; }
     }
 }

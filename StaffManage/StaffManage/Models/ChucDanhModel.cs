@@ -2,7 +2,7 @@
 {
     public class ChucDanhModel
     {
-        public int Machucdanh { get; set; }
-        public string Tenchucdanh { get; set; }
+        public int MaChucDanh { get; set; }
+        public string TenChucDanh { get; set; }
     }
 }

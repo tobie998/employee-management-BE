@@ -2,7 +2,7 @@
 {
     public class VanBangCanBoModel
     {
-        public int Mavanbang { get; set; }
-        public string Tenvanbang { get; set; }
+        public int MaVanBang { get; set; }
+        public string TenVanBang { get; set; }
     }
 }

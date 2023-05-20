@@ -104,7 +104,7 @@ namespace StaffManage.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ChiTietKyLuatExists(chiTietKyLuat.Makyluat, chiTietKyLuat.Macanbo))
+                if (ChiTietKyLuatExists(chiTietKyLuat.MaKyLuat, chiTietKyLuat.MaCanBo))
                 {
                     return Conflict();
                 }

@@ -8,7 +8,7 @@ namespace StaffManage.Data
         public int Makyluat { get; set; }
         [Required]
         public string Tenkyluat { get; set; }
-
+        public int isDelete { get; set; } = 0;
         public ICollection<ChiTietKyLuat> chiTietKyLuat { get; set; }
         public KyLuat()
         {

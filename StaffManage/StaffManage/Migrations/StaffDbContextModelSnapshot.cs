@@ -109,6 +109,9 @@ namespace StaffManage.Migrations
                     b.Property<int>("Namsinh")
                         .HasColumnType("int");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Macanbo");
 
                     b.HasIndex("Madonvi");
@@ -465,6 +468,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Machucdanh");
 
                     b.ToTable("chucDanh");
@@ -482,6 +488,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Machucvu");
 
                     b.ToTable("chucVu");
@@ -498,6 +507,9 @@ namespace StaffManage.Migrations
                     b.Property<string>("LoaicongtrinhKH")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("MacongtrinhKH");
 
@@ -532,6 +544,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Macongtrinhnghiencuu", "Macanbo");
 
                     b.HasIndex("Macanbo");
@@ -550,6 +565,9 @@ namespace StaffManage.Migrations
                     b.Property<string>("Tendetai")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("Madetai");
 
@@ -579,6 +597,9 @@ namespace StaffManage.Migrations
                     b.Property<string>("Tinhtrang")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("Madetai", "Macanbo");
 
@@ -621,6 +642,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Madonvi");
 
                     b.ToTable("donvi");
@@ -637,6 +661,9 @@ namespace StaffManage.Migrations
                     b.Property<string>("Hinhthuc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("Magiaithuong");
 
@@ -655,6 +682,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Makhenthuong");
 
                     b.ToTable("khenThuong");
@@ -671,6 +701,9 @@ namespace StaffManage.Migrations
                     b.Property<string>("Hinhthuchoidong")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("Mahinhthuchoidong");
 
@@ -689,6 +722,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Makyluat");
 
                     b.ToTable("kyLuat");
@@ -705,6 +741,9 @@ namespace StaffManage.Migrations
                     b.Property<string>("Tenchuyennganh")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("Machuyennganh");
 
@@ -755,6 +794,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Mabacdaotao");
 
                     b.ToTable("quaTrinhDaoTao");
@@ -772,6 +814,9 @@ namespace StaffManage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Mangoaingu");
 
                     b.ToTable("trinhDoNgoaiNgu");
@@ -788,6 +833,9 @@ namespace StaffManage.Migrations
                     b.Property<string>("Tenvanbang")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("Mavanbang");
 

@@ -2,8 +2,8 @@
 {
     public class ChiTietChucDanhModel
     {
-        public int Machucdanh { get; set; }
-        public string Macanbo { get; set; }
-        public string Tenchucdanh { get; set; }
+        public int MaChucDanh { get; set; }
+        public string MaCanBo { get; set; }
+        public string TenChucDanh { get; set; }
     }
 }

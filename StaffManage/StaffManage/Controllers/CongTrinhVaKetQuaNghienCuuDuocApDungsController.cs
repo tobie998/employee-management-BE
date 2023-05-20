@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{macongtrinhnghiencuu}/{macanbo}")]
         public async Task<IActionResult> PutCongTrinhVaKetQuaNghienCuuDuocApDung(int macongtrinhnghiencuu, string macanbo, CongTrinhVaKetQuaNghienCuuDuocApDungModel congTrinhVaKetQuaNghienCuuDuocApDung)
         {
-            if (macongtrinhnghiencuu != congTrinhVaKetQuaNghienCuuDuocApDung.Macongtrinhnghiencuu || macanbo != congTrinhVaKetQuaNghienCuuDuocApDung.Macanbo)
+            if (macongtrinhnghiencuu != congTrinhVaKetQuaNghienCuuDuocApDung.MaCongTrinhNghienCuu || macanbo != congTrinhVaKetQuaNghienCuuDuocApDung.MaCanBo)
             {
                 return BadRequest();
             }
@@ -103,7 +103,7 @@ namespace StaffManage.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CongTrinhVaKetQuaNghienCuuDuocApDungExists(congTrinhVaKetQuaNghienCuuDuocApDung.Macongtrinhnghiencuu, congTrinhVaKetQuaNghienCuuDuocApDung.Macanbo))
+                if (CongTrinhVaKetQuaNghienCuuDuocApDungExists(congTrinhVaKetQuaNghienCuuDuocApDung.MaCongTrinhNghienCuu, congTrinhVaKetQuaNghienCuuDuocApDung.MaCanBo))
                 {
                     return Conflict();
                 }

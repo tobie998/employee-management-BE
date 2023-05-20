@@ -8,6 +8,8 @@ namespace StaffManage.Data
         public int Machucvu { get; set; }
         [Required]
         public string Tenchucvu { get; set; }
+        public int isDelete { get; set; } = 0;
+
         public ICollection<ChiTietChucVu> chiTietChucVus { get; set; }
         public ChucVu()
         {

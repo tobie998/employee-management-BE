@@ -8,6 +8,8 @@ namespace StaffManage.Data
         public int Mangoaingu { get; set; }
         [Required]
         public string Tenngoaingu { get; set; }
+        public int isDelete { get; set; } = 0;
+
         public ICollection<ChiTietTrinhDoNgoaiNgu> chiTietTrinhDoNgoaiNgu { get; set; }
         public TrinhDoNgoaiNgu()
         {

@@ -8,6 +8,8 @@ namespace StaffManage.Data
         public int Mavanbang { get; set; }
         [Required]
         public string Tenvanbang { get; set; }
+        public int isDelete { get; set; } = 0;
+
         public ICollection<ChiTietVanBang> chiTietVanBang { get; set; }
 
         public VanBangCanBo()

@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var list = await _context.trinhDoNgoaiNgu.ToListAsync();
+            var list = await _context.trinhDoNgoaiNgu.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<TrinhDoNgoaiNguModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var trinhDoNgoaiNgu = await _context.trinhDoNgoaiNgu.FindAsync(id);
+            var trinhDoNgoaiNgu = await _context.trinhDoNgoaiNgu.SingleOrDefaultAsync(cb => cb.Mangoaingu == id && cb.isDelete == 0);
 
             if (trinhDoNgoaiNgu == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTrinhDoNgoaiNgu(int id, TrinhDoNgoaiNguModel trinhDoNgoaiNgu)
         {
-            if (id != trinhDoNgoaiNgu.Mangoaingu)
+            if (id != trinhDoNgoaiNgu.MaNgoaiNgu)
             {
                 return BadRequest();
             }
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.trinhDoNgoaiNgu.Remove(trinhDoNgoaiNgu);
+            trinhDoNgoaiNgu.isDelete = 1;
+            _context.trinhDoNgoaiNgu.Update(trinhDoNgoaiNgu);
             await _context.SaveChangesAsync();
 
             return NoContent();

@@ -2,7 +2,7 @@
 {
     public class CongTrinhKH_CNModel
     {
-        public int MacongtrinhKH { get; set; }
-        public string LoaicongtrinhKH { get; set; }
+        public int MaCongTrinhKH { get; set; }
+        public string LoaiCongTrinhKH { get; set; }
     }
 }

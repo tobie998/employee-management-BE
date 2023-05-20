@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var list = await _context.giaiThuong.ToListAsync();
+            var list = await _context.giaiThuong.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<GiaiThuongModel>>(list);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var giaiThuong = await _context.giaiThuong.FindAsync(id);
+            var giaiThuong = await _context.giaiThuong.SingleOrDefaultAsync(cb => cb.Magiaithuong == id && cb.isDelete == 0);
 
             if (giaiThuong == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutGiaiThuong(int id, GiaiThuongModel giaiThuong)
         {
-            if (id != giaiThuong.Magiaithuong)
+            if (id != giaiThuong.MaGiaiThuong)
             {
                 return BadRequest();
             }
@@ -99,7 +99,7 @@ namespace StaffManage.Controllers
             _context.giaiThuong.Add(giaithuong);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGiaiThuong", new { id = giaiThuong.Magiaithuong }, giaiThuong);
+            return CreatedAtAction("GetGiaiThuong", new { id = giaiThuong.MaGiaiThuong }, giaiThuong);
         }
 
         // DELETE: api/GiaiThuongs/5
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.giaiThuong.Remove(giaiThuong);
+            giaiThuong.isDelete = 1;
+            _context.giaiThuong.Update(giaiThuong);
             await _context.SaveChangesAsync();
 
             return NoContent();

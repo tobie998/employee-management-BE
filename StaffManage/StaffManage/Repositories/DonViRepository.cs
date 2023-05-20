@@ -49,7 +49,7 @@ namespace StaffManage.Repositories
 
         public async Task UpdateDonVi(int id, DonViModel donvi)
         {
-            if(id == donvi.Madonvi)
+            if(id == donvi.MaDonVi)
             {
                 var updateDonVi = _mapper.Map<DonVi>(donvi);
                 _context.donvi!.Update(updateDonVi);

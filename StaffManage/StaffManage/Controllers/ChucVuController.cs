@@ -32,7 +32,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var chucvu = await _context.chucVu.ToListAsync();
+            var chucvu = await _context.chucVu.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<ChucVuModel>>(chucvu);
         }
 
@@ -44,7 +44,7 @@ namespace StaffManage.Controllers
           {
               return NotFound();
           }
-            var chucVu = await _context.chucVu.FindAsync(id);
+            var chucVu = await _context.chucVu.SingleOrDefaultAsync(cb => cb.Machucvu == id && cb.isDelete == 0);
 
             if (chucVu == null)
             {
@@ -59,7 +59,7 @@ namespace StaffManage.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutChucVu(int id, ChucVuModel chucVu)
         {
-            if (id != chucVu.Machucvu)
+            if (id != chucVu.MaChucVu)
             {
                 return BadRequest();
             }
@@ -99,7 +99,7 @@ namespace StaffManage.Controllers
             _context.chucVu.Add(chitiet);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetChucVu", new { id = chucVu.Machucvu }, chucVu);
+            return CreatedAtAction("GetChucVu", new { id = chucVu.MaChucVu }, chucVu);
         }
 
         // DELETE: api/ChucVu/5
@@ -115,8 +115,8 @@ namespace StaffManage.Controllers
             {
                 return NotFound();
             }
-
-            _context.chucVu.Remove(chucVu);
+            chucVu.isDelete = 1;
+            _context.chucVu.Update(chucVu);
             await _context.SaveChangesAsync();
 
             return NoContent();

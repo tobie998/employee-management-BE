@@ -2,7 +2,7 @@
 {
     public class KyLuatModel
     {
-        public int Makyluat { get; set; }
-        public string Tenkyluat { get; set; }
+        public int MaKyLuat { get; set; }
+        public string TenKyluat { get; set; }
     }
 }
