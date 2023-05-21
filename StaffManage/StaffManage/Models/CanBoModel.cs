@@ -8,7 +8,7 @@ namespace StaffManage.Models
         public String MaCanBo { get; set; }
         public int MaDonVi { get; set; }
         public string HoTen { get; set; }
-        public int NamSinh { get; set; }
+        public string NamSinh { get; set; }
         public bool GioiTinh { get; set; }
         public string HocHam { get; set; }
         public string HocVi { get; set; }
@@ -19,7 +19,8 @@ namespace StaffManage.Models
         public string DienThoaiCoQuan { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-
+        public int MaChucVu { get; set; }
+        public int MaChucDanh { get; set; }
         public string BacLuong { get; set; }
         public double LuongCoBan { get; set; }
 

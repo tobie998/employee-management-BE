@@ -10,10 +10,5 @@ namespace StaffManage.Data
         public string Tenchucdanh { get; set; }
         public int isDelete { get; set; } = 0;
 
-        public ICollection<ChiTietChucDanh> chiTietChucDanhs { get; set; }
-        public ChucDanh()
-        {
-            chiTietChucDanhs = new HashSet<ChiTietChucDanh>();
-        }
     }
 }

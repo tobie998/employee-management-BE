@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StaffManage.Data;
 
@@ -10,9 +11,10 @@ using StaffManage.Data;
 namespace StaffManage.Migrations
 {
     [DbContext(typeof(StaffDbContext))]
-    partial class StaffDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230521185208_updatedbcanbo")]
+    partial class updatedbcanbo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,9 +114,8 @@ namespace StaffManage.Migrations
                     b.Property<int>("Namhocvi")
                         .HasColumnType("int");
 
-                    b.Property<string>("Namsinh")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Namsinh")
+                        .HasColumnType("int");
 
                     b.Property<int>("isDelete")
                         .HasColumnType("int");

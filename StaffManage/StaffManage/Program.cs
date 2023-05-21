@@ -8,7 +8,7 @@ using StaffManage.Repositories;
 using System.Text;
 using System.Configuration;
 using StaffManage;
-using StaffManage.RabitMQ;
+using StaffManage.Repositories.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,8 +37,8 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddScoped<IDonViRepository, DonViRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<IRabitMQProducer, RabitMQProducer>();
-
+builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+ 
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
 var appSettings = appSettingsSection.Get<AppSettings>();

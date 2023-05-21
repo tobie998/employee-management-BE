@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Researcher_Management.Data;
 
@@ -10,9 +11,11 @@ using Researcher_Management.Data;
 namespace Researcher_Management.Migrations
 {
     [DbContext(typeof(ResercherDBContext))]
-    partial class ResercherDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230521194536_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

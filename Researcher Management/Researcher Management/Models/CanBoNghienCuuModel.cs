@@ -2,12 +2,12 @@
 {
     public class CanBoNghienCuuModel
     {
-        public string Macanbonghiencuu { get; set; }
-        public string Chunhiemdetai { get; set; }
-        public string Chucdanhnghenghiep { get; set; }
-        public string Hocham { get; set; }
-        public string Dienthoai { get; set; }
+        public string MaCanBoNghienCuu { get; set; }
+        public string ChuNhiemDeTai { get; set; }
+        public string ChucDanhNgheNghiep { get; set; }
+        public string HocHam { get; set; }
+        public string DienThoai { get; set; }
         public string Email { get; set; }
-        public string Khoacongtac { get; set; }
+        public string KhoaCongTac { get; set; }
     }
 }

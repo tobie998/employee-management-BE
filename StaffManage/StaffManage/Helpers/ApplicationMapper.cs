@@ -12,8 +12,6 @@ namespace StaffManage.Helpers
             CreateMap<CanBo, CanBoModel>().ReverseMap();
             CreateMap<ChiTietGiaiThuong, ChiTietGiaiThuongModel>().ReverseMap();
             CreateMap<ChiTietLinhVucNghienCuu, ChiTietLinhVucNghienCuuModel>().ReverseMap();
-            CreateMap<ChiTietChucVu, ChiTietChucVuModel>().ReverseMap();
-            CreateMap<ChiTietChucDanh, ChiTietChucDanhModel>().ReverseMap();
             CreateMap<ChiTietQuaTrinhDaoTao, ChiTietQuaTrinhDaoTaoModel>().ReverseMap();
             CreateMap<ChucVu, ChucVuModel>().ReverseMap();
             CreateMap<GiaiThuong, GiaiThuongModel>().ReverseMap();
@@ -37,6 +35,7 @@ namespace StaffManage.Helpers
             CreateMap<CongTrinhVaKetQuaNghienCuuDuocApDung, CongTrinhVaKetQuaNghienCuuDuocApDungModel>().ReverseMap();
             CreateMap<VanBangCanBo, VanBangCanBoModel>().ReverseMap();
             CreateMap<ChiTietVanBang, ChiTietVanBangModel>().ReverseMap();
+            CreateMap<CanBo, CanBoNghienCuu>().ReverseMap();
 
 
         }

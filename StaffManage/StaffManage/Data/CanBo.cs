@@ -9,7 +9,7 @@ namespace StaffManage.Data
         public string Macanbo { get; set; }
         [Required]
         public string Hoten { get; set;}
-        public int Namsinh { get; set;}
+        public string Namsinh { get; set;}
         public bool Gioitinh { get; set;}
         public string Hocham { get; set;}
         public string Hocvi { get; set;}
@@ -30,7 +30,12 @@ namespace StaffManage.Data
 
         [Range(0, double.MaxValue)]
         public double Luongcoban { get; set;}
-
+        public int Machucdanh { get; set; }
+        [ForeignKey("Machucdanh")]
+        public ChucDanh ChucDanh { get; set; }
+        public int Machucvu { get; set; }
+        [ForeignKey("Madonvi")]
+        public ChucVu ChucVu { get; set; }
         public int Madonvi { get; set;}
 
         [ForeignKey("Madonvi")]
@@ -39,8 +44,6 @@ namespace StaffManage.Data
 
         public ICollection<ChiTietGiaiThuong> chiTietGiaiThuongs { get; set; }
         public ICollection<ChiTietLinhVucNghienCuu> chiTietLinhVucNghienCuu { get; set; }
-        public ICollection<ChiTietChucVu> chiTietChucVus { get; set; }
-        public ICollection<ChiTietChucDanh> chiTietChucDanhs { get; set; }
         public ICollection<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTaos { get; set; }
         public ICollection<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CNs { get; set; }
         public ICollection<ChiTietTrinhDoNgoaiNgu> chiTietTrinhDoNgoaiNgu { get; set; }
@@ -59,8 +62,6 @@ namespace StaffManage.Data
         {
             chiTietGiaiThuongs = new HashSet<ChiTietGiaiThuong>();
             chiTietLinhVucNghienCuu = new HashSet<ChiTietLinhVucNghienCuu>();
-            chiTietChucVus = new HashSet<ChiTietChucVu>();
-            chiTietChucDanhs = new HashSet<ChiTietChucDanh>();
             chiTietQuaTrinhDaoTaos = new HashSet<ChiTietQuaTrinhDaoTao>();
             chiTietVeKinhNghiemKH_CNs = new HashSet<ChiTietVeKinhNghiemKH_CN>();
             chiTietTrinhDoNgoaiNgu = new HashSet<ChiTietTrinhDoNgoaiNgu>();
@@ -73,7 +74,6 @@ namespace StaffManage.Data
             deTaiDuAnKHCNChuTri = new HashSet<DeTaiDuAnKHCNChuTri>();
             congTrinhVaKetQuaNghienCuuDuocApDung = new HashSet<CongTrinhVaKetQuaNghienCuuDuocApDung>();
             chiTietVanBang = new HashSet<ChiTietVanBang>();
-
         }
     }
 }

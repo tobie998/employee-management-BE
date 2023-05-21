@@ -9,7 +9,7 @@
         public string Dienthoai { get; set; }
         public string Email { get; set; }
         public string Khoacongtac { get; set; }
-        public int status { get; set; }
+        public int isDelete { get; set; } = 0;
 
     }
 }

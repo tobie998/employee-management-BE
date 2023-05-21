@@ -26,8 +26,6 @@ namespace StaffManage.Data
         public DbSet<DeTaiDuAnKHCN> deTaiDuAn { get; set; }
         public DbSet<ChiTietGiaiThuong> chiTietGiaiThuong { get; set; }
         public DbSet<ChiTietLinhVucNghienCuu> chiTietLinhVucNghienCuu { get; set; }
-        public DbSet<ChiTietChucVu> chiTietChucVu { get; set; }
-        public DbSet<ChiTietChucDanh> chiTietChucDanh { get; set; }
         public DbSet<ChiTietQuaTrinhDaoTao> chiTietQuaTrinhDaoTao { get; set; }
         public DbSet<ChiTietVeKinhNghiemKH_CN> chiTietVeKinhNghiemKH_CN { get; set; }
         public DbSet<ChiTietTrinhDoNgoaiNgu> chiTietTrinhDoNgoaiNgu { get; set; }
@@ -66,30 +64,6 @@ namespace StaffManage.Data
                 .HasForeignKey(e => e.Machuyennganh);
 
                 entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietLinhVucNghienCuu)
-                .HasForeignKey(e => e.Macanbo);
-
-            });
-
-            modelBuilder.Entity<ChiTietChucVu>(entity =>
-            {
-                entity.HasKey(c => new { c.Machucvu, c.Macanbo });
-
-                entity.HasOne(e => e.ChucVu).WithMany(e => e.chiTietChucVus)
-                .HasForeignKey(e => e.Machucvu);
-
-                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietChucVus)
-                .HasForeignKey(e => e.Macanbo);
-
-            });
-
-            modelBuilder.Entity<ChiTietChucDanh>(entity =>
-            {
-                entity.HasKey(c => new { c.Machucdanh, c.Macanbo });
-
-                entity.HasOne(e => e.ChucDanh).WithMany(e => e.chiTietChucDanhs)
-                .HasForeignKey(e => e.Machucdanh);
-
-                entity.HasOne(e => e.CanBo).WithMany(e => e.chiTietChucDanhs)
                 .HasForeignKey(e => e.Macanbo);
 
             });
