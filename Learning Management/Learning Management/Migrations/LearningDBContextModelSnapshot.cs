@@ -41,14 +41,13 @@ namespace Learning_Management.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Quequan")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Tennhansu")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
 
                     b.HasKey("Manhansu");
 

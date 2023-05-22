@@ -54,6 +54,9 @@ namespace Researcher_Management.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("isDelete")
+                        .HasColumnType("int");
+
                     b.HasKey("Macanbonghiencuu");
 
                     b.ToTable("canBoNghienCuu");

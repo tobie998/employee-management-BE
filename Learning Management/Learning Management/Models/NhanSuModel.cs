@@ -4,11 +4,10 @@ namespace Learning_Management.Models
 {
     public class NhanSuModel
     {
-        public string Manhansu { get; set; }
-        public string Tennhansu { get; set; }
-        public string Diachi { get; set; }
+        public string MaNhanSu { get; set; }
+        public string TenNhanSu { get; set; }
+        public string DiaChi { get; set; }
         public string Email { get; set; }
-        public string Quequan { get; set; }
-        public string Chucvu { get; set; }
+        public string ChucVu { get; set; }
     }
 }

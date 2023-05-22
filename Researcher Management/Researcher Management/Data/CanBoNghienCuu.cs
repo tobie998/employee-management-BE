@@ -16,5 +16,7 @@ namespace Researcher_Management.Data
         [MaxLength(100)]
         public string Email { get; set; }
         public string Khoacongtac { get; set; }
+        public int isDelete { get; set; } = 0;
+
     }
 }
