@@ -9,6 +9,7 @@ namespace Learning_Management.Helpers
         public ApplicationMapper()
         {
             CreateMap<NhanSu, NhanSuModel>().ReverseMap();
+            CreateMap<NhanSu, CanBo>().ReverseMap();
 
         }
     }
