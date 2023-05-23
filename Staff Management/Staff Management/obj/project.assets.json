@@ -2483,12 +2483,18 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Admin\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+=======
+    "C:\\Users\\QuangTd\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> 3f81db66f04273be70a335f9694cb54a87e7ed55
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Admin\\Desktop\\DATN-source\\employee-management-BE-main\\Staff Management\\Staff Management\\Staff Management.csproj",
       "projectName": "Staff Management",
       "projectPath": "C:\\Users\\Admin\\Desktop\\DATN-source\\employee-management-BE-main\\Staff Management\\Staff Management\\Staff Management.csproj",
@@ -2500,6 +2506,20 @@
       ],
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\Staff Management.csproj",
+      "projectName": "Staff Management",
+      "projectPath": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\Staff Management.csproj",
+      "packagesPath": "C:\\Users\\QuangTd\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\QuangTd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+>>>>>>> 3f81db66f04273be70a335f9694cb54a87e7ed55
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

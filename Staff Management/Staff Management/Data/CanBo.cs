@@ -34,7 +34,12 @@ namespace StaffManage.Data
         [ForeignKey("Machucdanh")]
         public ChucDanh ChucDanh { get; set; }
         public string Machucvu { get; set; }
+<<<<<<< HEAD:Staff Management/Staff Management/Data/CanBo.cs
         [ForeignKey("Machucvu")]
+        [ForeignKey("Machucvu")]
+=======
+        [ForeignKey("Madonvi")]
+>>>>>>> 3f81db66f04273be70a335f9694cb54a87e7ed55:StaffManage/StaffManage/Data/CanBo.cs
         public ChucVu ChucVu { get; set; }
         public string Madonvi { get; set;}
 

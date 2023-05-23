@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD:Staff Management/Staff Management/obj/Staff Management.csproj.nuget.dgspec.json
     "C:\\Users\\Admin\\Desktop\\DATN-source\\employee-management-BE-main\\Staff Management\\Staff Management\\Staff Management.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\Admin\\Desktop\\DATN-source\\employee-management-BE-main\\Staff Management\\Staff Management\\Staff Management.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Admin\\Desktop\\DATN-source\\employee-management-BE-main\\Staff Management\\Staff Management\\obj\\",
+=======
+    "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\Staff Management.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\Staff Management.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\Staff Management.csproj",
+        "projectName": "Staff Management",
+        "projectPath": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\Staff Management.csproj",
+        "packagesPath": "C:\\Users\\QuangTd\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\QuangTd\\Desktop\\employee-management-BE\\Staff Management\\Staff Management\\obj\\",
+>>>>>>> 3f81db66f04273be70a335f9694cb54a87e7ed55:StaffManage/StaffManage/obj/StaffManage.csproj.nuget.dgspec.json
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

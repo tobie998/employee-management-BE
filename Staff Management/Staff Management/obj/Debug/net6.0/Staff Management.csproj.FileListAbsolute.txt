@@ -73,6 +73,7 @@ C:\Users\QuangTd\Desktop\employee-management-BE\Staff Management\Staff Managemen
 C:\Users\QuangTd\Desktop\employee-management-BE\Staff Management\Staff Management\obj\Debug\net6.0\Staff Management.pdb
 C:\Users\QuangTd\Desktop\employee-management-BE\Staff Management\Staff Management\obj\Debug\net6.0\Staff Management.genruntimeconfig.cache
 C:\Users\QuangTd\Desktop\employee-management-BE\Staff Management\Staff Management\obj\Debug\net6.0\ref\Staff Management.dll
+<<<<<<< HEAD
 C:\Users\Admin\Desktop\DATN-source\employee-management-BE-main\Staff Management\Staff Management\obj\Debug\net6.0\Staff Management.csproj.AssemblyReference.cache
 C:\Users\Admin\Desktop\DATN-source\employee-management-BE-main\Staff Management\Staff Management\obj\Debug\net6.0\Staff Management.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Admin\Desktop\DATN-source\employee-management-BE-main\Staff Management\Staff Management\obj\Debug\net6.0\Staff Management.AssemblyInfoInputs.cache
@@ -148,3 +149,5 @@ C:\Users\Admin\Desktop\DATN-source\employee-management-BE-main\Staff Management\
 C:\Users\Admin\Desktop\DATN-source\employee-management-BE-main\Staff Management\Staff Management\obj\Debug\net6.0\Staff Management.csproj.CopyComplete
 C:\Users\Admin\Desktop\DATN-source\employee-management-BE-main\Staff Management\Staff Management\obj\Debug\net6.0\Staff Management.genruntimeconfig.cache
 C:\Users\Admin\Desktop\DATN-source\employee-management-BE-main\Staff Management\Staff Management\obj\Debug\net6.0\ref\Staff Management.dll
+=======
+>>>>>>> 3f81db66f04273be70a335f9694cb54a87e7ed55
