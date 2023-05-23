@@ -24,7 +24,32 @@ namespace Researcher_Management.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/CanBoNghienCuu
+        // Post: api/CanBoNghienCuu/SyncData
+        [HttpPost("SyncData")]
+        public async Task<ActionResult<IEnumerable<DataCBNC>>> SyncData(DataCBNC canBoNghienCuu)
+        {
+            var canBo = _mapper.Map<CanBoNghienCuu>(canBoNghienCuu);
+            if (CanBoNghienCuuExists(canBo.Macanbonghiencuu))
+            {
+                _context.canBoNghienCuu.Update(canBo);
+            }
+            else
+            {
+                _context.canBoNghienCuu.Add(canBo);
+            }
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+               throw;
+            }
+
+            return Ok();
+        }
+
+            // GET: api/CanBoNghienCuu
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CanBoNghienCuuModel>>> GetcanBoNghienCuu()
         {
@@ -32,11 +57,11 @@ namespace Researcher_Management.Controllers
           {
               return NotFound();
           }
-            var canbos = await _context.canBoNghienCuu.ToListAsync();
+            var canbos = await _context.canBoNghienCuu.Where(e => e.isDelete == 0).ToListAsync();
             return _mapper.Map<List<CanBoNghienCuuModel>>(canbos);
         }
 
-        // GET: api/CanBoNghienCuu/5
+        // GET: api/CanBoNghienCuu/5 
         [HttpGet("{id}")]
         public async Task<ActionResult<CanBoNghienCuuModel>> GetCanBoNghienCuu(string id)
         {
@@ -44,7 +69,7 @@ namespace Researcher_Management.Controllers
           {
               return NotFound();
           }
-            var canBoNghienCuu = await _context.canBoNghienCuu.FindAsync(id);
+            var canBoNghienCuu = await _context.canBoNghienCuu.SingleOrDefaultAsync(cb => cb.Macanbonghiencuu == id && cb.isDelete == 0);
 
             if (canBoNghienCuu == null)
             {
@@ -59,7 +84,7 @@ namespace Researcher_Management.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCanBoNghienCuu(string id, CanBoNghienCuuModel canBoNghienCuu)
         {
-            if (id != canBoNghienCuu.Macanbonghiencuu)
+            if (id != canBoNghienCuu.MaCanBoNghienCuu)
             {
                 return BadRequest();
             }
@@ -103,7 +128,7 @@ namespace Researcher_Management.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CanBoNghienCuuExists(canBoNghienCuu.Macanbonghiencuu))
+                if (CanBoNghienCuuExists(canBoNghienCuu.MaCanBoNghienCuu))
                 {
                     return Conflict();
                 }
@@ -129,8 +154,8 @@ namespace Researcher_Management.Controllers
             {
                 return NotFound();
             }
-
-            _context.canBoNghienCuu.Remove(canBoNghienCuu);
+            canBoNghienCuu.isDelete = 1;
+            _context.canBoNghienCuu.Update(canBoNghienCuu);
             await _context.SaveChangesAsync();
 
             return NoContent();

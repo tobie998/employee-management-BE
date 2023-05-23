@@ -12,9 +12,10 @@ namespace Learning_Management.Data
         public string Diachi { get; set; }
         [MaxLength(50)]
         public string Email { get; set; }
-        public string Quequan { get; set; }
         [MaxLength(50)]
         public string Chucvu { get; set; }
-       
+        public int isDelete { get; set; } = 0;
+
+
     }
 }
